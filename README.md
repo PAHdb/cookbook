@@ -1,3 +1,5 @@
+[![Travis Status](https://img.shields.io/travis/PAHdb/cookbook.svg)](https://travis-ci.org/PAHdb/cookbook) [![Documentation](https://img.shields.io/badge/docs-available-brightgreen.svg)](https://pahdb.github.io/cookbook/)
+
 # NASA Ames PAH IR Spectroscopic Database Cookbook
 
 This is the source directory of the cookbook accompanying the NASA

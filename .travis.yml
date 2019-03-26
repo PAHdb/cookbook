@@ -10,8 +10,8 @@ before_install:
 - sudo apt-get install -y pandoc
 
 install:
-  # Install this package and the packages listed in requirements.txt.
-  - pip install -v .
+  # Install the packages listed in requirements.txt.
+  - pip install -r requirements.txt
 
 env:
   global:

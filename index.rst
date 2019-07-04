@@ -28,7 +28,7 @@ additional resources and information.
 
    recipe_01
    recipe_02
-   notebooks/tutorial_01
+   recipe_03
 
 *Last updated March 2019*
 

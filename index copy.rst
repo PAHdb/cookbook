@@ -26,12 +26,11 @@ additional resources and information.
 .. toctree::
    :maxdepth: 1
 
+   recipe_01
+   recipe_02
    recipe_03
-   recipe_04
-   recipe_05
-   recipe_06
 
-*Last updated July 2019*
+*Last updated March 2019*
 
 .. rubric:: Footnotes
 

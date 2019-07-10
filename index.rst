@@ -25,11 +25,10 @@ additional resources and information.
 
 .. toctree::
    :maxdepth: 1
+   :hidden:
 
-   recipe_03
-   recipe_04
-   recipe_05
-   recipe_06
+   sec_01
+   sec_02
 
 *Last updated July 2019*
 

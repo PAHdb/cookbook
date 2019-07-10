@@ -1,0 +1,6 @@
+
+Working with observational data
+====================================
+
+The 'AmesPAHdbIDLSuite_Laboratory'-object exposes available raw
+laboratory spectra when an experimental database XML-file is loaded.

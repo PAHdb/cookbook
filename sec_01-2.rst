@@ -51,7 +51,19 @@ of four main parts:
 
     .. code-tab:: python
 
+        pahdb = Amespahdbpythonsuite()
+
         uids = pahdb.search("c<=20 neutral n=2 neutral")
+
+        pahs = pahdb.getspeciesbyuid(uids)
+
+        transitions = pahdb.gettransitionsbyuid(uids)
+
+        geometry = pahdb.getgeometrybyuid(uids)
+
+        laboratory = pahdb.getlaboratorybyuid(uids)
+
+        # ... work ...
 
 Alternatively, one can access these data components through the
 'AmesPAHdbIDLSuite_Species'-object.
@@ -81,5 +93,14 @@ Alternatively, one can access these data components through the
 
     .. code-tab:: python
 
-        uids = pahdb.search("c<=20 neutral n=2 neutral")
+        pahdb = Amespahdbpythonsuite()
 
+        pahs = pahdb.getspeciesbyuid(pahdb.search("c<=20 neutral n=2 neutral"))
+
+        transitions = pahs.transitions()
+
+        geometry = pahs.geometry()
+
+        laboratory = pahs.laboratory()
+
+        # ... work ...

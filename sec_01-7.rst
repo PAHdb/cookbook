@@ -23,13 +23,17 @@ and, in their simplest form, both the 'CalculatedTemperature' and
 
         transitions->FixedTemperature,600D
 
-        transitions->CalculatedTemperature,6D*1.603D-126 eV
+        transitions->CalculatedTemperature,6D*1.603D-12 ; 6 eV
 
-        transitions->Cascade,6D*1.603D-126 eV
+        transitions->Cascade,6D*1.603D-12 ; 6 eV
 
     .. code-tab:: python
 
+        transitions.fixed_temperature(600)
+
         transitions.calculatedtemperature(4.0 * 1.603e-12)
+
+        transitions.cascade(6 * 1.603e-12)
 
 Both the 'CalculatedTemperature' and 'Cascade'-methods accept the
 'Approximate', 'Star', 'StellarModel', and 'ISRF'-keywords. With the
@@ -64,7 +68,9 @@ absorbed by each PAH.
 
     .. code-tab:: python
 
-        transitions.calculatedtemperature(4.0 * 1.603e-12)
+        transitions.calculatedtemperature(17000, star=True)
+
+        transitions.cascade(precision='approximate', field='ISRF')
 
 The 'Cascade'-method also accepts the 'Convolve'-keyword. When set and
 combined with either the 'Star', optionally with the 'StellarModel'-keyword,
@@ -80,7 +86,7 @@ radiation field.
 
     .. code-tab:: python
 
-        transitions.calculatedtemperature(4.0 * 1.603e-12)
+        # Placeholder
 
 NB This is computationally expensive.
 
@@ -95,7 +101,7 @@ to redshift the fundamental transitions to simulate anharmonic effects.
 
     .. code-tab:: python
 
-        transitions.calculatedtemperature(4.0 * 1.603e-12)
+        # Placeholder
 
 NB Red-shifting the fundamental vibrational transitions should be done
 after applying one of the three emission models described above. 

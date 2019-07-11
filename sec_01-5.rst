@@ -10,11 +10,13 @@ laboratory spectra when an experimental database XML-file is loaded.
     .. code-tab:: idl
 
         uids = pahdb->Search("c<=20 neutral n=2 neutral")
+
         laboratory = pahdb->getLaboratoryByUID(uids)
 
     .. code-tab:: python
 
         uids = pahdb.search("c<=20 neutral n=2 neutral")
+        
         laboratory = pahdb.getlaboratorybyuid(uids)
 
 The 'AmesPAHdbIDLSuite_Laboratory-object's 'Plot'-method will display
@@ -44,7 +46,7 @@ additional keywords accepted by IDL's 'PLOT'-procedure can be passed.
 
     .. code-tab:: python
 
-        # Placeholder
+        laboratory.plot()
         
 The 'AmesPAHdbIDLSuite_Laboratory-object's 'Write'-method will write
 the raw laboratory spectrum to file. The spectrum of each PAH species

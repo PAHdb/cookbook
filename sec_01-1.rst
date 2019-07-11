@@ -2,9 +2,6 @@
 First steps
 ===========================
 
-First we must create the ``pahdb`` object, regardless of whether we are using the Python suite or the IDL suite.
-
-
 Interaction with the NASA Ames PAH IR Spectroscopic Database is
 organized around the 'AmesPAHdbIDLSuite'-object, which is created
 as shown below.
@@ -18,8 +15,8 @@ as shown below.
 
     .. code-tab:: python
 
-        # For the Python suite, we import the relevant class.
         from amespahdbpythonsuite.pahdb import Amespahdbpythonsuite
+        pahdb = Amespahdbpythonsuite()
 
 Alternatively, the 'AmesPAHdbIDLSuite'-object can be created through
 the implicit object creation method as shown below.

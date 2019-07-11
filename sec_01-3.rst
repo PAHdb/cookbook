@@ -10,11 +10,13 @@ vibrational transitions.
     .. code-tab:: idl
 
         uids = pahdb->Search("c<=20 neutral n=2 neutral")
+        
         transitions = pahdb->getTransitionsByUID(uids)
 
     .. code-tab:: python
 
         uids = pahdb.search("c<=20 neutral n=2 neutral")
+
         transitions = pahdb.gettransitionsbyuid(uids)
 
 The 'AmesPAHdbIDLSuite_Transitions-object's 'Print'-method will
@@ -43,7 +45,7 @@ for each PAH species as a single, concatenated string.
 
     .. code-tab:: python
 
-        # Placeholder
+        print(transitions)
 
 The 'AmesPAHdbIDLSuite_Transitions'-object's 'Plot'-method will
 display the fundamental vibrational transitions in a 'stick'-plot.
@@ -74,7 +76,7 @@ keywords accepted by IDL's 'PLOT'-procedure can be passed.
 
     .. code-tab:: python
 
-        # Placeholder
+        transitions.plot()
 
 The 'AmesPAHdbIDLSuite_Transitions'-object's 'Write'-method will
 write the fundamental vibrational transitions to file. The transitions
@@ -90,17 +92,5 @@ a prefix can be given that will be prepended to the filename.
 
     .. code-tab:: python
 
-        # Calculate the emission spectrum at the temperature
-        # reached after absorbing a 4 eV (CGS units) photon
-        transitions.calculatedtemperature(4.0 * 1.603e-12)
-
-        # Plot the emission 'stick' spectrum at that temperature
-        transitions.plot()
-
-        # Convolve the bands with a Lorentzian with
-        # FWHM of 30 /cm
-        spectrum = transitions.convolve(fwhm=30.0)
-
-        # Plot the convolved spectrum
-        spectrum.plot()
+        # Placeholder
 

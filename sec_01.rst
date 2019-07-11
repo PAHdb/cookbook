@@ -3,7 +3,9 @@
 API Overview
 ##############
 
-First we must create the ``pahdb`` object, regardless of whether we are using the Python suite or the IDL suite.
+This section provides an overview of the application programming interface (API)
+used in both the IDL and Python suites. The API is designed around an object-oriented
+paradigm where each instance is in control of its own data.
 
 .. toctree::
    :maxdepth: 1
@@ -19,3 +21,4 @@ First we must create the ``pahdb`` object, regardless of whether we are using th
    sec_01-8
    sec_01-9
    sec_01-10
+   sec_01-11

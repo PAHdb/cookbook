@@ -11,11 +11,13 @@ geometric data.
     .. code-tab:: idl
 
         uids = pahdb->Search("c<=20 neutral n=2 neutral")
+
         geometry = pahdb->getGeometryByUID(uids)
 
     .. code-tab:: python
 
         uids = pahdb.search("c<=20 neutral n=2 neutral")
+        
         geometry = pahdb.getgeometrybyuid(uids)
 
 The 'AmesPAHdbIDLSuite_Geometry'-object provides both the 'Plot' and
@@ -35,7 +37,9 @@ the output, while the latter IDL object graphics.
 
     .. code-tab:: python
 
-        # Placeholder
+        geometry.plot(18)
+
+        img = geometry.structure(18)
 
 The 'Plot'-method will accept the 'Scale', 'Thick', and 'RGB'- keywords
 to control the scale at which the atoms are to be drawn, the thickness
@@ -61,7 +65,7 @@ controls rotation of the structure around the z-axis.
 
     .. code-tab:: python
 
-        # Placeholder
+        img = geometry.plot(18)
 
 The 'Structure'-method will accept the 'Background' and 'Frame'-keywords
 to control background color and display of a wireframe. The
@@ -90,7 +94,7 @@ the caller.
 
     .. code-tab:: python
 
-        # Placeholder
+        img = geometry.structure(18)
 
 In addition, the 'AmesPAHdbIDLSuite_Geometry'-object provides the
 'Mass', 'Rings', and 'Area'-methods that return the calculated mass
@@ -109,7 +113,11 @@ surface area of the PAH molecules under consideration.
 
     .. code-tab:: python
 
-        # Placeholder
+        masses = geometry.mass()
+
+        rings = geometry.rings()
+
+        areas = geometry.area()
         
 Lastly, the 'Inertia'-method provides the moment of inertia matrices,
 which are diagonalized with the 'Diagonalize'-method, for the PAH
@@ -127,4 +135,6 @@ before calling the 'Plot' or 'Structure'-methods.
 
     .. code-tab:: python
 
-        # Placeholder
+        matrix = geometry.inertia()
+
+        geometry.diagonalize()

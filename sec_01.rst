@@ -11,14 +11,14 @@ paradigm where each instance is in control of its own data.
    :maxdepth: 1
    :hidden:
 
-   sec_01-1
-   sec_01-2
-   sec_01-3
-   sec_01-4
-   sec_01-5
-   sec_01-6
-   sec_01-7
-   sec_01-8
-   sec_01-9
-   sec_01-10
-   sec_01-11
+   sec_01-first_steps
+   sec_01-accessing_data
+   sec_01-working_with_geometry
+   sec_01-working_with_lab
+   sec_01-working_with_transitions
+   sec_01-using_emission_models
+   sec_01-creating_spectra
+   sec_01-working_with_spectra
+   sec_01-working_with_obs
+   sec_01-spectroscopic_fitting
+   sec_01-working_with_fitted_data

@@ -85,3 +85,87 @@ line 38: The individual PAH spectra are added using weights retrieved from the f
 line 40: The coadded spectrum is displayed, revealing the entire 3-20 micron, predicted, PAH spectrum.
 
 line 42: Cleanup.
+
+
+
+Description of figures
+-----------------------
+
+Line 25: A figure is displayed showing the fitted spectrum and its components, as shown below.
+
+.. tabs::
+
+    .. group-tab:: IDL
+
+        .. image:: figures/Screenshots/IDL/complete_example/1.png
+           :align: center
+
+    .. group-tab:: Python
+
+        .. image:: figures/Screenshots/Python/complete_example/1.png
+           :align: center
+
+Line xx: The residuals are useful for evaluating the fit.
+
+.. tabs::
+
+    .. group-tab:: IDL
+
+        .. image:: figures/Screenshots/IDL/complete_example/2.png
+           :align: center
+
+    .. group-tab:: Python
+
+        .. image:: figures/Screenshots/Python/complete_example/2.png
+           :align: center
+
+Line xx: The components of the fit can be displayed: here we examine the small and large PAH contributions.
+
+.. tabs::
+
+    .. group-tab:: IDL
+
+        .. image:: figures/Screenshots/IDL/complete_example/3.png
+           :align: center
+
+    .. group-tab:: Python
+
+        .. image:: figures/Screenshots/Python/complete_example/3.png
+           :align: center
+
+Line xx: We can also examine the contribution to the fit by charge state.
+
+.. tabs::
+
+    .. group-tab:: IDL
+
+        .. image:: figures/Screenshots/IDL/complete_example/4.png
+           :align: center
+
+    .. group-tab:: Python
+
+        .. image:: figures/Screenshots/Python/complete_example/4.png
+           :align: center
+
+Line xx: Or composition (pure, nitrogen-included).
+
+.. tabs::
+
+    .. group-tab:: IDL
+
+        .. image:: figures/Screenshots/IDL/complete_example/5.png
+           :align: center
+
+    .. group-tab:: Python
+
+        .. image:: figures/Screenshots/Python/complete_example/5.png
+           :align: center
+
+Line 40: Finally, a coadded spectrum is displayed.
+
+.. tabs::
+
+    .. group-tab:: IDL
+
+        .. image:: figures/Screenshots/IDL/complete_example/6.png
+           :align: center

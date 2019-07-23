@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Cookbook &mdash; PAHdb cookbook  documentation</title>
+  <title>Plot spectrum &mdash; PAHdb cookbook  documentation</title>
   
 
   
@@ -27,6 +27,8 @@
         <script type="text/javascript" src="_static/underscore.js"></script>
         <script type="text/javascript" src="_static/doctools.js"></script>
         <script type="text/javascript" src="_static/language_data.js"></script>
+        <script type="text/javascript" src="_static/sphinx_tabs/semantic-ui-2.4.1/tab.min.js"></script>
+        <script type="text/javascript" src="_static/sphinx_tabs/tabs.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -35,9 +37,14 @@
   
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/sphinx_tabs/semantic-ui-2.4.1/segment.min.css" type="text/css" />
+  <link rel="stylesheet" href="_static/sphinx_tabs/semantic-ui-2.4.1/menu.min.css" type="text/css" />
+  <link rel="stylesheet" href="_static/sphinx_tabs/semantic-ui-2.4.1/tab.min.css" type="text/css" />
+  <link rel="stylesheet" href="_static/sphinx_tabs/tabs.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="API Overview" href="sec_01.html" /> 
+    <link rel="next" title="Comparing two spectra" href="sec_02-compare_two_spectra.html" />
+    <link rel="prev" title="Save to disk" href="sec_02-save_to_disk.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -51,7 +58,7 @@
           
 
           
-            <a href="#" class="icon icon-home"> PAHdb cookbook
+            <a href="index.html" class="icon icon-home"> PAHdb cookbook
           
 
           
@@ -81,7 +88,7 @@
               
             
             
-              <ul>
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="sec_01.html">API Overview</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="sec_01-first_steps.html">First steps</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sec_01-accessing_data.html">Accessing data</a></li>
@@ -96,13 +103,13 @@
 <li class="toctree-l2"><a class="reference internal" href="sec_01-working_with_fitted_data.html">Working with fitted data</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="sec_02.html">Recipes</a><ul>
+<li class="toctree-l1 current"><a class="reference internal" href="sec_02.html">Recipes</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="sec_02-complete_example.html">A complete example</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="sec_02-complete_example.html#description-of-figures">Description of figures</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="sec_02-save_to_disk.html">Save to disk</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sec_02-plot_spectrum.html">Plot spectrum</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Plot spectrum</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sec_02-compare_two_spectra.html">Comparing two spectra</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sec_02-add_spectra.html">Add two or more spectra</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sec_02-compare_lab_to_theory.html">Compare laboratory and theoretical spectra</a></li>
@@ -122,7 +129,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="#">PAHdb cookbook</a>
+          <a href="index.html">PAHdb cookbook</a>
         
       </nav>
 
@@ -151,9 +158,11 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="#">Docs</a> &raquo;</li>
+      <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Cookbook</li>
+          <li><a href="sec_02.html">Recipes</a> &raquo;</li>
+        
+      <li>Plot spectrum</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -167,8 +176,10 @@
   
   <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
       
-        <a href="sec_01.html" class="btn btn-neutral float-right" title="API Overview" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="sec_02-compare_two_spectra.html" class="btn btn-neutral float-right" title="Comparing two spectra" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
+      
+        <a href="sec_02-save_to_disk.html" class="btn btn-neutral float-left" title="Save to disk" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
   </div>
   
@@ -201,34 +212,32 @@
     text-align: unset;
 }
 </style>
-<img alt="_images/logo&#64;2x.png" class="align-center" src="_images/logo&#64;2x.png" />
-<p><a class="reference external" href="https://nasa.gov">NASA</a>: <a class="reference external" href="https://www.nasa.gov/ames">Ames Research Center</a>: <a class="reference external" href="https://astrochemistry.org/">The Astrophysics &amp; Astrochemistry Laboratory</a></p>
-<div class="section" id="cookbook">
-<h1>Cookbook<a class="headerlink" href="#cookbook" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="nasa-ames-pah-ir-spectroscopic-database">
-<h2>NASA Ames PAH IR Spectroscopic Database<a class="headerlink" href="#nasa-ames-pah-ir-spectroscopic-database" title="Permalink to this headline">¶</a></h2>
-<p>The NASA Ames PAH IR Spectroscopic Database <a class="footnote-reference brackets" href="#f1" id="id1">1</a> (PAHdb hereafter)
-hosts the world’s foremost collection of infrared (IR) PAH
-spectra. PAHdb’s spectral libraries contain over 3,000 laboratory
-measured and quantum chemically computed PAH spectra. Beyond
-spectroscopic data, PAHdb also provides software tools to work with
-the spectral data. The portal to the data and tools is the PAHdb
-website, which is located at <a class="reference external" href="https://www.astrochemistry.org/pahdb">https://www.astrochemistry.org/pahdb</a>. This is a cookbook with
-recipes for using the PAHdb software tools for data analysis</p>
-<p>Please consult the <a class="reference external" href="https:/PAHdb.github.io">document portal</a> for
-additional resources and information.</p>
-<div class="toctree-wrapper compound">
+<div class="section" id="plot-spectrum">
+<h1>Plot spectrum<a class="headerlink" href="#plot-spectrum" title="Permalink to this headline">¶</a></h1>
+<p>Placeholder</p>
+<div class="sphinx-tabs docutils container">
+<div class="ui top attached tabular menu sphinx-menu docutils container">
+<div class="active item sphinx-data-tab-SURM docutils container">
+<div class="docutils container">
+<p>IDL</p>
 </div>
-<p><em>Last updated July 2019</em></p>
-<p class="rubric">Footnotes</p>
-<dl class="footnote brackets">
-<dt class="label" id="f1"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>Since FY2019 the NASA Ames PAH IR Spectroscopic Database is
-being supported through a directed Work Package at NASA Ames
-titled: “Laboratory Astrophysics –- The NASA Ames PAH IR
-Spectroscopic Database”.</p>
-</dd>
-</dl>
+</div>
+<div class="item sphinx-data-tab-UHl0aG9u docutils container">
+<div class="docutils container">
+<p>Python</p>
+</div>
+</div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment code-tab sphinx-data-tab-SURM active docutils container">
+<div class="highlight-idl notranslate"><div class="highlight"><pre><span></span>placeholder
+</pre></div>
+</div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment code-tab sphinx-data-tab-UHl0aG9u docutils container">
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">placeholder</span>
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 
@@ -240,8 +249,10 @@ Spectroscopic Database”.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="sec_01.html" class="btn btn-neutral float-right" title="API Overview" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="sec_02-compare_two_spectra.html" class="btn btn-neutral float-right" title="Comparing two spectra" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
+      
+        <a href="sec_02-save_to_disk.html" class="btn btn-neutral float-left" title="Save to disk" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

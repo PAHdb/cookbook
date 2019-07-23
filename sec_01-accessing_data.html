@@ -1,0 +1,408 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Accessing data &mdash; PAHdb cookbook  documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/touch-icon-310x310.png"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script type="text/javascript" src="_static/sphinx_tabs/semantic-ui-2.4.1/tab.min.js"></script>
+        <script type="text/javascript" src="_static/sphinx_tabs/tabs.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/sphinx_tabs/semantic-ui-2.4.1/segment.min.css" type="text/css" />
+  <link rel="stylesheet" href="_static/sphinx_tabs/semantic-ui-2.4.1/menu.min.css" type="text/css" />
+  <link rel="stylesheet" href="_static/sphinx_tabs/semantic-ui-2.4.1/tab.min.css" type="text/css" />
+  <link rel="stylesheet" href="_static/sphinx_tabs/tabs.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Working with geometry data" href="sec_01-working_with_geometry.html" />
+    <link rel="prev" title="First steps" href="sec_01-first_steps.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> PAHdb cookbook
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="sec_01.html">API Overview</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="sec_01-first_steps.html">First steps</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Accessing data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sec_01-working_with_geometry.html">Working with geometry data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sec_01-working_with_lab.html">Working with laboratory data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sec_01-working_with_transitions.html">Working with transition data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sec_01-using_emission_models.html">Using emission models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sec_01-creating_spectra.html">Creating spectra</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sec_01-working_with_spectra.html">Working with spectra</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sec_01-working_with_obs.html">Working with observational data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sec_01-spectroscopic_fitting.html">Spectroscopic fitting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sec_01-working_with_fitted_data.html">Working with fitted data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sec_02.html">Recipes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sec_02-complete_example.html">A complete example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="sec_02-complete_example.html#description-of-figures">Description of figures</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sec_02-save_to_disk.html">Save to disk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sec_02-plot_spectrum.html">Plot spectrum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sec_02-compare_two_spectra.html">Comparing two spectra</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sec_02-add_spectra.html">Add two or more spectra</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sec_02-compare_lab_to_theory.html">Compare laboratory and theoretical spectra</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">PAHdb cookbook</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="sec_01.html">API Overview</a> &raquo;</li>
+        
+      <li>Accessing data</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="sec_01-working_with_geometry.html" class="btn btn-neutral float-right" title="Working with geometry data" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="sec_01-first_steps.html" class="btn btn-neutral float-left" title="First steps" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="accessing-data">
+<h1>Accessing data<a class="headerlink" href="#accessing-data" title="Permalink to this headline">¶</a></h1>
+<p>The molecular PAH data is accessed through their associated unique identifier (UID). However, a search-interface is available that allows retrieval of these UIDs through simplified queries. The syntax is the same as used on the NASA Ames PAH IR Spectroscopic Database website.</p>
+<div class="sphinx-tabs docutils container">
+<div class="ui top attached tabular menu sphinx-menu docutils container">
+<div class="active item sphinx-data-tab-SURM docutils container">
+<div class="docutils container">
+<p>IDL</p>
+</div>
+</div>
+<div class="item sphinx-data-tab-UHl0aG9u docutils container">
+<div class="docutils container">
+<p>Python</p>
+</div>
+</div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment code-tab sphinx-data-tab-SURM active docutils container">
+<div class="highlight-idl notranslate"><div class="highlight"><pre><span></span>uids <span class="o">=</span> pahdb<span class="o">-&gt;</span>Search(<span class="s2">&quot;c&lt;=20 neutral n=2 neutral&quot;</span>)
+</pre></div>
+</div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment code-tab sphinx-data-tab-UHl0aG9u docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">uids</span> <span class="o">=</span> <span class="n">pahdb</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;c&lt;=20 neutral n=2 neutral&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The molecular PAH data contained in the database XML-files consists
+of four main parts:</p>
+<ul class="simple">
+<li><p>Molecular properties, .e.g, molecular weight, zero point energy, total energy, etc.</p></li>
+<li><p>Fundamental vibrational transitions</p></li>
+<li><p>Molecular geometric data</p></li>
+<li><p>Raw laboratory spectra for a subset of molecules in the experimental database</p></li>
+</ul>
+<div class="sphinx-tabs docutils container">
+<div class="ui top attached tabular menu sphinx-menu docutils container">
+<div class="active item sphinx-data-tab-SURM docutils container">
+<div class="docutils container">
+<p>IDL</p>
+</div>
+</div>
+<div class="item sphinx-data-tab-UHl0aG9u docutils container">
+<div class="docutils container">
+<p>Python</p>
+</div>
+</div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment code-tab sphinx-data-tab-SURM active docutils container">
+<div class="highlight-idl notranslate"><div class="highlight"><pre><span></span>pahdb <span class="o">=</span> <span class="nb">OBJ_NEW</span>(<span class="s1">&#39;AmesPAHdbIDLSuite&#39;</span>)
+
+uids <span class="o">=</span> pahdb<span class="o">-&gt;</span>Search(<span class="s2">&quot;c&lt;=20 neutral n=2 neutral&quot;</span>)
+
+pahs <span class="o">=</span> pahdb<span class="o">-&gt;</span>getSpeciesByUID(uids)
+
+transitions <span class="o">=</span> pahdb<span class="o">-&gt;</span>getTransitionsByUID(uids)
+
+geometries <span class="o">=</span> pahdb<span class="o">-&gt;</span>getGeometryByUID(uids)
+
+laboratory <span class="o">=</span> pahdb<span class="o">-&gt;</span>getLaboratoryByUID(uids)
+
+<span class="c1">; ... work ...</span>
+
+<span class="nb">OBJ_DESTROY</span>,[laboratory, $
+             geometries, $
+             transitions, $
+             pahs, $
+             pahdb]
+</pre></div>
+</div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment code-tab sphinx-data-tab-UHl0aG9u docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pahdb</span> <span class="o">=</span> <span class="n">Amespahdbpythonsuite</span><span class="p">()</span>
+
+<span class="n">uids</span> <span class="o">=</span> <span class="n">pahdb</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;c&lt;=20 neutral n=2 neutral&quot;</span><span class="p">)</span>
+
+<span class="n">pahs</span> <span class="o">=</span> <span class="n">pahdb</span><span class="o">.</span><span class="n">getspeciesbyuid</span><span class="p">(</span><span class="n">uids</span><span class="p">)</span>
+
+<span class="n">transitions</span> <span class="o">=</span> <span class="n">pahdb</span><span class="o">.</span><span class="n">gettransitionsbyuid</span><span class="p">(</span><span class="n">uids</span><span class="p">)</span>
+
+<span class="n">geometry</span> <span class="o">=</span> <span class="n">pahdb</span><span class="o">.</span><span class="n">getgeometrybyuid</span><span class="p">(</span><span class="n">uids</span><span class="p">)</span>
+
+<span class="n">laboratory</span> <span class="o">=</span> <span class="n">pahdb</span><span class="o">.</span><span class="n">getlaboratorybyuid</span><span class="p">(</span><span class="n">uids</span><span class="p">)</span>
+
+<span class="c1"># ... work ...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Alternatively, one can access these data components through the
+‘AmesPAHdbIDLSuite_Species’-object.</p>
+<div class="sphinx-tabs docutils container">
+<div class="ui top attached tabular menu sphinx-menu docutils container">
+<div class="active item sphinx-data-tab-SURM docutils container">
+<div class="docutils container">
+<p>IDL</p>
+</div>
+</div>
+<div class="item sphinx-data-tab-UHl0aG9u docutils container">
+<div class="docutils container">
+<p>Python</p>
+</div>
+</div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment code-tab sphinx-data-tab-SURM active docutils container">
+<div class="highlight-idl notranslate"><div class="highlight"><pre><span></span>pahdb <span class="o">=</span> <span class="nb">OBJ_NEW</span>(<span class="s1">&#39;AmesPAHdbIDLSuite&#39;</span>)
+
+pahs <span class="o">=</span> pahdb<span class="o">-&gt;</span>getSpeciesByUID( $
+       pahdb<span class="o">-&gt;</span>Search(<span class="s2">&quot;c&lt;=20 neutral n=2 neutral&quot;</span>))
+
+transitions <span class="o">=</span> pahs<span class="o">-&gt;</span>transitions()
+
+geometries <span class="o">=</span> pahs<span class="o">-&gt;</span>geometry()
+
+laboratory <span class="o">=</span> pahs<span class="o">-&gt;</span>laboratory()
+
+<span class="c1">; ... work ...</span>
+
+<span class="nb">OBJ_DESTROY</span>,[laboratory, $
+             geometries, $
+             transitions, $
+             pahs, $
+             pahdb]
+</pre></div>
+</div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment code-tab sphinx-data-tab-UHl0aG9u docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pahdb</span> <span class="o">=</span> <span class="n">Amespahdbpythonsuite</span><span class="p">()</span>
+
+<span class="n">pahs</span> <span class="o">=</span> <span class="n">pahdb</span><span class="o">.</span><span class="n">getspeciesbyuid</span><span class="p">(</span><span class="n">pahdb</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;c&lt;=20 neutral n=2 neutral&quot;</span><span class="p">))</span>
+
+<span class="n">transitions</span> <span class="o">=</span> <span class="n">pahs</span><span class="o">.</span><span class="n">transitions</span><span class="p">()</span>
+
+<span class="n">geometry</span> <span class="o">=</span> <span class="n">pahs</span><span class="o">.</span><span class="n">geometry</span><span class="p">()</span>
+
+<span class="n">laboratory</span> <span class="o">=</span> <span class="n">pahs</span><span class="o">.</span><span class="n">laboratory</span><span class="p">()</span>
+
+<span class="c1"># ... work ...</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="sec_01-working_with_geometry.html" class="btn btn-neutral float-right" title="Working with geometry data" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="sec_01-first_steps.html" class="btn btn-neutral float-left" title="First steps" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Dr. Christiaan Boersma and Dr. Matthew J. Shannon
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

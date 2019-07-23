@@ -24,11 +24,13 @@ Please consult the `document portal <https:/PAHdb.github.io>`_ for
 additional resources and information.
 
 .. toctree::
+   :maxdepth: 1
    :hidden:
 
-   recipe_01
+   sec_01
+   sec_02
 
-*Last updated March 2019*
+*Last updated July 2019*
 
 .. rubric:: Footnotes
 

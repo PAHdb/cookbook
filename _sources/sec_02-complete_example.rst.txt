@@ -1,0 +1,171 @@
+
+
+A complete example
+====================
+
+A complete example of fitting an observation is shown below. It is an adaption of the 'fit_a_spectrum.pro'-procedure found in the examples-directory of the AmesPAHdbIDLSuite, and is followed by a detailed, line-by-line, explanation of the code.
+
+.. tabs::
+
+    .. code-tab:: idl
+        :linenos:
+
+        observation = OBJ_NEW('AmesPAHdbIDLSuite_Observation', 'myFile', $
+                               Units=AmesPAHdbIDLSuite_CREATE_OBSERVATION_UNITS_S())
+
+        observation->AbscissaUnitsTo,1
+
+        observation->Rebin,5D,/Uniform
+
+        pahdb = OBJ_NEW('AmesPAHdbIDLSuite')
+
+        transitions = pahdb->getTransitionsByUID( $
+                      pahdb->Search("mg=0 o=0 fe=0 si=0 chx=0 ch2=0 c>20"))
+
+        transitions->FixedTemperature,600D
+
+        transitions->Shift,-15D
+
+        spectrum = transitions->Convolve(/Lorentzian, $
+                                         Grid=observation->getGrid(), $
+                                         FWHM=20D)
+
+        fit = spectrum->Fit(observation)
+
+        OBJ_DESTROY,spectrum
+
+        fit->Plot,/Wavelength
+
+        fit->Plot,/Wavelength,/Residual
+
+        fit->Plot,/Wavelength,/Charge
+
+        transitions->Intersect, $
+                fit->getUIDs()
+
+        spectrum = transitions->Convolve(/Lorentzian, $
+                                         FWHM=20D, $
+                                         XRange=1D4/[20D, 3D])
+
+        coadded = spectrum->CoAdd(Weights=fit->getWeights())
+
+        coadded->Plot
+
+        OBJ_DESTROY,[coadded, spectrum, fit, transitions, pahdb, observation]
+
+
+lines 1-2: An observation is read from 'myFile' and the 'AmesPAHdbIDLSuite_CREATE_OBSERVATION_UNITS_S'-helper function is called to associate units.
+
+line 4: Observation abscissa units are converted to wavenumber.
+
+line 6: The observation is rebinned onto a uniform grid spaced 5 wavenumbers.
+
+line 8: The default NASA Ames PAH IR Spectroscopic Database XML-file is loaded
+
+line 10: The fundamental vibrational transitions from a subset of PAHs are retrieved.
+
+line 13: A FixedTemperature emission model at 600 Kelvin is applied.
+
+line 15: The fundamental vibrational transitions are redshifted 15 wavenumbers.
+
+line 17: The fundamental vibrational transitions are convolved with Lorentzian profiles having a full-width-at-half-maximum of 20 cm-1 onto the observational grid.
+
+line 21: The observation is fitted with the PAH emission spectra.
+
+line 23: Cleanup of 'spectrum'.
+
+line 25-29: Display several aspects of the fit.
+
+line 31: The transitions are intersected with the PAH species in the fit.
+
+line 34: The fundamental vibrational transitions are again convolved with Lorentzian profiles having a full-width-at-half-maximum of 20 cm-1, but now onto a generated grid from 3-10 micron.
+
+line 38: The individual PAH spectra are added using weights retrieved from the fit.
+
+line 40: The coadded spectrum is displayed, revealing the entire 3-20 micron, predicted, PAH spectrum.
+
+line 42: Cleanup.
+
+
+
+Description of figures
+-----------------------
+
+Line 25: A figure is displayed showing the fitted spectrum and its components, as shown below.
+
+.. tabs::
+
+    .. group-tab:: IDL
+
+        .. image:: figures/Screenshots/IDL/complete_example/1.png
+           :align: center
+
+    .. group-tab:: Python
+
+        .. image:: figures/Screenshots/Python/complete_example/1.png
+           :align: center
+
+Line xx: The residuals are useful for evaluating the fit.
+
+.. tabs::
+
+    .. group-tab:: IDL
+
+        .. image:: figures/Screenshots/IDL/complete_example/2.png
+           :align: center
+
+    .. group-tab:: Python
+
+        .. image:: figures/Screenshots/Python/complete_example/2.png
+           :align: center
+
+Line xx: The components of the fit can be displayed: here we examine the small and large PAH contributions.
+
+.. tabs::
+
+    .. group-tab:: IDL
+
+        .. image:: figures/Screenshots/IDL/complete_example/3.png
+           :align: center
+
+    .. group-tab:: Python
+
+        .. image:: figures/Screenshots/Python/complete_example/3.png
+           :align: center
+
+Line xx: We can also examine the contribution to the fit by charge state.
+
+.. tabs::
+
+    .. group-tab:: IDL
+
+        .. image:: figures/Screenshots/IDL/complete_example/4.png
+           :align: center
+
+    .. group-tab:: Python
+
+        .. image:: figures/Screenshots/Python/complete_example/4.png
+           :align: center
+
+Line xx: Or composition (pure, nitrogen-included).
+
+.. tabs::
+
+    .. group-tab:: IDL
+
+        .. image:: figures/Screenshots/IDL/complete_example/5.png
+           :align: center
+
+    .. group-tab:: Python
+
+        .. image:: figures/Screenshots/Python/complete_example/5.png
+           :align: center
+
+Line 40: Finally, a coadded spectrum is displayed.
+
+.. tabs::
+
+    .. group-tab:: IDL
+
+        .. image:: figures/Screenshots/IDL/complete_example/6.png
+           :align: center

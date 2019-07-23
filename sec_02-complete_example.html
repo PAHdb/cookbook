@@ -1,0 +1,502 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>A complete example &mdash; PAHdb cookbook  documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/touch-icon-310x310.png"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script type="text/javascript" src="_static/sphinx_tabs/semantic-ui-2.4.1/tab.min.js"></script>
+        <script type="text/javascript" src="_static/sphinx_tabs/tabs.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/sphinx_tabs/semantic-ui-2.4.1/segment.min.css" type="text/css" />
+  <link rel="stylesheet" href="_static/sphinx_tabs/semantic-ui-2.4.1/menu.min.css" type="text/css" />
+  <link rel="stylesheet" href="_static/sphinx_tabs/semantic-ui-2.4.1/tab.min.css" type="text/css" />
+  <link rel="stylesheet" href="_static/sphinx_tabs/tabs.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Save to disk" href="sec_02-save_to_disk.html" />
+    <link rel="prev" title="Recipes" href="sec_02.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> PAHdb cookbook
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="sec_01.html">API Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sec_01-first_steps.html">First steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sec_01-accessing_data.html">Accessing data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sec_01-working_with_geometry.html">Working with geometry data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sec_01-working_with_lab.html">Working with laboratory data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sec_01-working_with_transitions.html">Working with transition data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sec_01-using_emission_models.html">Using emission models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sec_01-creating_spectra.html">Creating spectra</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sec_01-working_with_spectra.html">Working with spectra</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sec_01-working_with_obs.html">Working with observational data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sec_01-spectroscopic_fitting.html">Spectroscopic fitting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sec_01-working_with_fitted_data.html">Working with fitted data</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="sec_02.html">Recipes</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">A complete example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#description-of-figures">Description of figures</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sec_02-save_to_disk.html">Save to disk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sec_02-plot_spectrum.html">Plot spectrum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sec_02-compare_two_spectra.html">Comparing two spectra</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sec_02-add_spectra.html">Add two or more spectra</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sec_02-compare_lab_to_theory.html">Compare laboratory and theoretical spectra</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">PAHdb cookbook</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="sec_02.html">Recipes</a> &raquo;</li>
+        
+      <li>A complete example</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="sec_02-save_to_disk.html" class="btn btn-neutral float-right" title="Save to disk" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="sec_02.html" class="btn btn-neutral float-left" title="Recipes" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="a-complete-example">
+<h1>A complete example<a class="headerlink" href="#a-complete-example" title="Permalink to this headline">¶</a></h1>
+<p>A complete example of fitting an observation is shown below. It is an adaption of the ‘fit_a_spectrum.pro’-procedure found in the examples-directory of the AmesPAHdbIDLSuite, and is followed by a detailed, line-by-line, explanation of the code.</p>
+<div class="sphinx-tabs docutils container">
+<div class="ui top attached tabular menu sphinx-menu docutils container">
+<div class="active item sphinx-data-tab-SURM docutils container">
+<div class="docutils container">
+<p>IDL</p>
+</div>
+</div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment code-tab sphinx-data-tab-SURM active docutils container">
+<div class="highlight-idl notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42</pre></div></td><td class="code"><div class="highlight"><pre><span></span>observation <span class="o">=</span> <span class="nb">OBJ_NEW</span>(<span class="s1">&#39;AmesPAHdbIDLSuite_Observation&#39;</span>, <span class="s1">&#39;myFile&#39;</span>, $
+                       Units<span class="o">=</span>AmesPAHdbIDLSuite_CREATE_OBSERVATION_UNITS_S())
+
+observation<span class="o">-&gt;</span>AbscissaUnitsTo,<span class="mi">1</span>
+
+observation<span class="o">-&gt;</span><span class="nb">Rebin</span>,5D,<span class="o">/</span>Uniform
+
+pahdb <span class="o">=</span> <span class="nb">OBJ_NEW</span>(<span class="s1">&#39;AmesPAHdbIDLSuite&#39;</span>)
+
+transitions <span class="o">=</span> pahdb<span class="o">-&gt;</span>getTransitionsByUID( $
+              pahdb<span class="o">-&gt;</span>Search(<span class="s2">&quot;mg=0 o=0 fe=0 si=0 chx=0 ch2=0 c&gt;20&quot;</span>))
+
+transitions<span class="o">-&gt;</span>FixedTemperature,600D
+
+transitions<span class="o">-&gt;</span><span class="nb">Shift</span>,<span class="o">-</span>15D
+
+spectrum <span class="o">=</span> transitions<span class="o">-&gt;</span>Convolve(<span class="o">/</span>Lorentzian, $
+                                 Grid<span class="o">=</span>observation<span class="o">-&gt;</span>getGrid(), $
+                                 FWHM<span class="o">=</span>20D)
+
+fit <span class="o">=</span> spectrum<span class="o">-&gt;</span>Fit(observation)
+
+<span class="nb">OBJ_DESTROY</span>,spectrum
+
+fit<span class="o">-&gt;</span><span class="nb">Plot</span>,<span class="o">/</span>Wavelength
+
+fit<span class="o">-&gt;</span><span class="nb">Plot</span>,<span class="o">/</span>Wavelength,<span class="o">/</span>Residual
+
+fit<span class="o">-&gt;</span><span class="nb">Plot</span>,<span class="o">/</span>Wavelength,<span class="o">/</span>Charge
+
+transitions<span class="o">-&gt;</span>Intersect, $
+        fit<span class="o">-&gt;</span>getUIDs()
+
+spectrum <span class="o">=</span> transitions<span class="o">-&gt;</span>Convolve(<span class="o">/</span>Lorentzian, $
+                                 FWHM<span class="o">=</span>20D, $
+                                 XRange<span class="o">=</span>1D4<span class="o">/</span>[20D, 3D])
+
+coadded <span class="o">=</span> spectrum<span class="o">-&gt;</span>CoAdd(Weights<span class="o">=</span>fit<span class="o">-&gt;</span>getWeights())
+
+coadded<span class="o">-&gt;</span><span class="nb">Plot</span>
+
+<span class="nb">OBJ_DESTROY</span>,[coadded, spectrum, fit, transitions, pahdb, observation]
+</pre></div>
+</td></tr></table></div>
+</div>
+</div>
+<p>lines 1-2: An observation is read from ‘myFile’ and the ‘AmesPAHdbIDLSuite_CREATE_OBSERVATION_UNITS_S’-helper function is called to associate units.</p>
+<p>line 4: Observation abscissa units are converted to wavenumber.</p>
+<p>line 6: The observation is rebinned onto a uniform grid spaced 5 wavenumbers.</p>
+<p>line 8: The default NASA Ames PAH IR Spectroscopic Database XML-file is loaded</p>
+<p>line 10: The fundamental vibrational transitions from a subset of PAHs are retrieved.</p>
+<p>line 13: A FixedTemperature emission model at 600 Kelvin is applied.</p>
+<p>line 15: The fundamental vibrational transitions are redshifted 15 wavenumbers.</p>
+<p>line 17: The fundamental vibrational transitions are convolved with Lorentzian profiles having a full-width-at-half-maximum of 20 cm-1 onto the observational grid.</p>
+<p>line 21: The observation is fitted with the PAH emission spectra.</p>
+<p>line 23: Cleanup of ‘spectrum’.</p>
+<p>line 25-29: Display several aspects of the fit.</p>
+<p>line 31: The transitions are intersected with the PAH species in the fit.</p>
+<p>line 34: The fundamental vibrational transitions are again convolved with Lorentzian profiles having a full-width-at-half-maximum of 20 cm-1, but now onto a generated grid from 3-10 micron.</p>
+<p>line 38: The individual PAH spectra are added using weights retrieved from the fit.</p>
+<p>line 40: The coadded spectrum is displayed, revealing the entire 3-20 micron, predicted, PAH spectrum.</p>
+<p>line 42: Cleanup.</p>
+<div class="section" id="description-of-figures">
+<h2>Description of figures<a class="headerlink" href="#description-of-figures" title="Permalink to this headline">¶</a></h2>
+<p>Line 25: A figure is displayed showing the fitted spectrum and its components, as shown below.</p>
+<div class="sphinx-tabs docutils container">
+<div class="ui top attached tabular menu sphinx-menu docutils container">
+<div class="active item sphinx-data-tab-SURM docutils container">
+<div class="docutils container">
+<p>IDL</p>
+</div>
+</div>
+<div class="item sphinx-data-tab-UHl0aG9u docutils container">
+<div class="docutils container">
+<p>Python</p>
+</div>
+</div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-SURM active docutils container">
+<img alt="_images/1.png" class="align-center" src="_images/1.png" />
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-UHl0aG9u docutils container">
+<img alt="_images/11.png" class="align-center" src="_images/11.png" />
+</div>
+</div>
+<p>Line xx: The residuals are useful for evaluating the fit.</p>
+<div class="sphinx-tabs docutils container">
+<div class="ui top attached tabular menu sphinx-menu docutils container">
+<div class="active item sphinx-data-tab-SURM docutils container">
+<div class="docutils container">
+<p>IDL</p>
+</div>
+</div>
+<div class="item sphinx-data-tab-UHl0aG9u docutils container">
+<div class="docutils container">
+<p>Python</p>
+</div>
+</div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-SURM active docutils container">
+<img alt="_images/2.png" class="align-center" src="_images/2.png" />
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-UHl0aG9u docutils container">
+<img alt="_images/21.png" class="align-center" src="_images/21.png" />
+</div>
+</div>
+<p>Line xx: The components of the fit can be displayed: here we examine the small and large PAH contributions.</p>
+<div class="sphinx-tabs docutils container">
+<div class="ui top attached tabular menu sphinx-menu docutils container">
+<div class="active item sphinx-data-tab-SURM docutils container">
+<div class="docutils container">
+<p>IDL</p>
+</div>
+</div>
+<div class="item sphinx-data-tab-UHl0aG9u docutils container">
+<div class="docutils container">
+<p>Python</p>
+</div>
+</div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-SURM active docutils container">
+<img alt="_images/3.png" class="align-center" src="_images/3.png" />
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-UHl0aG9u docutils container">
+<img alt="_images/31.png" class="align-center" src="_images/31.png" />
+</div>
+</div>
+<p>Line xx: We can also examine the contribution to the fit by charge state.</p>
+<div class="sphinx-tabs docutils container">
+<div class="ui top attached tabular menu sphinx-menu docutils container">
+<div class="active item sphinx-data-tab-SURM docutils container">
+<div class="docutils container">
+<p>IDL</p>
+</div>
+</div>
+<div class="item sphinx-data-tab-UHl0aG9u docutils container">
+<div class="docutils container">
+<p>Python</p>
+</div>
+</div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-SURM active docutils container">
+<img alt="_images/4.png" class="align-center" src="_images/4.png" />
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-UHl0aG9u docutils container">
+<img alt="_images/41.png" class="align-center" src="_images/41.png" />
+</div>
+</div>
+<p>Line xx: Or composition (pure, nitrogen-included).</p>
+<div class="sphinx-tabs docutils container">
+<div class="ui top attached tabular menu sphinx-menu docutils container">
+<div class="active item sphinx-data-tab-SURM docutils container">
+<div class="docutils container">
+<p>IDL</p>
+</div>
+</div>
+<div class="item sphinx-data-tab-UHl0aG9u docutils container">
+<div class="docutils container">
+<p>Python</p>
+</div>
+</div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-SURM active docutils container">
+<img alt="_images/5.png" class="align-center" src="_images/5.png" />
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-UHl0aG9u docutils container">
+<img alt="_images/51.png" class="align-center" src="_images/51.png" />
+</div>
+</div>
+<p>Line 40: Finally, a coadded spectrum is displayed.</p>
+<div class="sphinx-tabs docutils container">
+<div class="ui top attached tabular menu sphinx-menu docutils container">
+<div class="active item sphinx-data-tab-SURM docutils container">
+<div class="docutils container">
+<p>IDL</p>
+</div>
+</div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-SURM active docutils container">
+<img alt="_images/6.png" class="align-center" src="_images/6.png" />
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="sec_02-save_to_disk.html" class="btn btn-neutral float-right" title="Save to disk" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="sec_02.html" class="btn btn-neutral float-left" title="Recipes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Dr. Christiaan Boersma and Dr. Matthew J. Shannon
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

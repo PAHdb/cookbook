@@ -17,11 +17,14 @@ measured and quantum chemically computed PAH spectra. Beyond
 spectroscopic data, PAHdb also provides software tools to work with
 the spectral data. The portal to the data and tools is the PAHdb
 website, which is located at `https://www.astrochemistry.org/pahdb
-<https://www.astrochemistry.org/pahdb>`_. This is a cookbook with
-recipes for using the PAHdb software tools for data analysis
+<https://www.astrochemistry.org/pahdb>`_. This is the PAHdb cookbook
+that provides an overview of the Application Programming Interface
+used for the software tools and a collection of recipes for data
+analysis.
 
-Please consult the `document portal <https:/PAHdb.github.io>`_ for
-additional resources and information.
+Please consult the `Document Portal <https:/PAHdb.github.io>`_ and
+PAHdb `website <https://astrochemistry.org/pahdb>`_ for additional
+resources and information.
 
 .. toctree::
    :maxdepth: 1
@@ -30,7 +33,7 @@ additional resources and information.
    sec_01
    sec_02
 
-*Last updated July 2019*
+*Last updated August 2019*
 
 .. rubric:: Footnotes
 

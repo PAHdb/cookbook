@@ -1,0 +1,682 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Fit a spectrum &mdash; PAHdb cookbook  documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/touch-icon-310x310.png"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script type="text/javascript" src="_static/sphinx_tabs/semantic-ui-2.4.1/tab.min.js"></script>
+        <script type="text/javascript" src="_static/sphinx_tabs/tabs.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/sphinx_tabs/semantic-ui-2.4.1/segment.min.css" type="text/css" />
+  <link rel="stylesheet" href="_static/sphinx_tabs/semantic-ui-2.4.1/menu.min.css" type="text/css" />
+  <link rel="stylesheet" href="_static/sphinx_tabs/semantic-ui-2.4.1/tab.min.css" type="text/css" />
+  <link rel="stylesheet" href="_static/sphinx_tabs/tabs.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Recipes" href="sec_02.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> PAHdb cookbook
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="sec_01.html">API Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sec_01-getting_started.html">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sec_01-accessing_data.html">Accessing data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sec_01-working_with_geometry.html">Working with geometry data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sec_01-working_with_lab.html">Working with laboratory data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sec_01-working_with_transitions.html">Working with transition data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sec_01-using_emission_models.html">Using emission models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sec_01-creating_spectra.html">Creating spectra</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sec_01-working_with_spectra.html">Working with spectra</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sec_01-working_with_obs.html">Working with observational data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sec_01-spectroscopic_fitting.html">Spectroscopic fitting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sec_01-working_with_fitted_data.html">Working with fitted data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sec_01-working_outside_the_classes.html">Working outside the classes</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="sec_02.html">Recipes</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Fit a spectrum</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">PAHdb cookbook</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="sec_02.html">Recipes</a> &raquo;</li>
+        
+      <li>Fit a spectrum</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+      
+        <a href="sec_02.html" class="btn btn-neutral float-left" title="Recipes" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="fit-a-spectrum">
+<h1>Fit a spectrum<a class="headerlink" href="#fit-a-spectrum" title="Permalink to this headline">¶</a></h1>
+<p>A complete example of fitting an astronomical spectrum is shown
+below. It is an adaption of ‘fit_a_spectrum’ found in the
+examples-directory of the software tools, and is followed by a
+detailed, line-by-line, explanation of the code.</p>
+<div class="sphinx-tabs docutils container">
+<div class="ui top attached tabular menu sphinx-menu docutils container">
+<div class="active item sphinx-data-tab-SURM docutils container">
+<div class="docutils container">
+<p>IDL</p>
+</div>
+</div>
+<div class="item sphinx-data-tab-UHl0aG9u docutils container">
+<div class="docutils container">
+<p>Python</p>
+</div>
+</div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment code-tab sphinx-data-tab-SURM active docutils container">
+<div class="highlight-idl notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42</pre></div></td><td class="code"><div class="highlight"><pre><span></span>observation <span class="o">=</span> <span class="nb">OBJ_NEW</span>(<span class="s1">&#39;AmesPAHdbIDLSuite_Observation&#39;</span>, <span class="s1">&#39;myFile&#39;</span>, $
+                       Units<span class="o">=</span>AmesPAHdbIDLSuite_CREATE_OBSERVATION_UNITS_S())
+
+observation<span class="o">-&gt;</span>AbscissaUnitsTo,<span class="mi">1</span>
+
+observation<span class="o">-&gt;</span><span class="nb">Rebin</span>,5D,<span class="o">/</span>Uniform
+
+pahdb <span class="o">=</span> <span class="nb">OBJ_NEW</span>(<span class="s1">&#39;AmesPAHdbIDLSuite&#39;</span>)
+
+transitions <span class="o">=</span> pahdb<span class="o">-&gt;</span>getTransitionsByUID( $
+              pahdb<span class="o">-&gt;</span>Search(<span class="s2">&quot;mg=0 o=0 fe=0 si=0 chx=0 ch2=0 c&gt;20&quot;</span>))
+
+transitions<span class="o">-&gt;</span>FixedTemperature,600D
+
+transitions<span class="o">-&gt;</span><span class="nb">Shift</span>,<span class="o">-</span>15D
+
+spectrum <span class="o">=</span> transitions<span class="o">-&gt;</span>Convolve(<span class="o">/</span>Lorentzian, $
+                                 Grid<span class="o">=</span>observation<span class="o">-&gt;</span>getGrid(), $
+                                 FWHM<span class="o">=</span>20D)
+
+fit <span class="o">=</span> spectrum<span class="o">-&gt;</span>Fit(observation)
+
+<span class="nb">OBJ_DESTROY</span>,spectrum
+
+fit<span class="o">-&gt;</span><span class="nb">Plot</span>,<span class="o">/</span>Wavelength
+
+fit<span class="o">-&gt;</span><span class="nb">Plot</span>,<span class="o">/</span>Wavelength,<span class="o">/</span>Residual
+
+fit<span class="o">-&gt;</span><span class="nb">Plot</span>,<span class="o">/</span>Wavelength,<span class="o">/</span>Charge
+
+transitions<span class="o">-&gt;</span>Intersect, $
+        fit<span class="o">-&gt;</span>getUIDs()
+
+spectrum <span class="o">=</span> transitions<span class="o">-&gt;</span>Convolve(<span class="o">/</span>Lorentzian, $
+                                 FWHM<span class="o">=</span>20D, $
+                                 XRange<span class="o">=</span>1D4<span class="o">/</span>[20D, 3D])
+
+coadded <span class="o">=</span> spectrum<span class="o">-&gt;</span>CoAdd(Weights<span class="o">=</span>fit<span class="o">-&gt;</span>getWeights())
+
+coadded<span class="o">-&gt;</span><span class="nb">Plot</span>
+
+<span class="nb">OBJ_DESTROY</span>,[coadded, spectrum, fit, transitions, pahdb, observation]
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment code-tab sphinx-data-tab-UHl0aG9u docutils container">
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39</pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="kn">import</span> <span class="nn">csv</span>
+ <span class="kn">import</span> <span class="nn">amespahdbpythonsuite</span>
+
+
+ <span class="n">observation</span> <span class="o">=</span> <span class="p">[]</span>
+ <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;myFile&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+     <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">skipinitialspace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+     <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">reader</span><span class="p">):</span>
+         <span class="n">observation</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">col</span><span class="p">])</span>
+
+ <span class="n">observation</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1e4</span><span class="o">/</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">observation</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+
+ <span class="n">pahdb</span> <span class="o">=</span> <span class="n">amespahdbpythonsuite</span><span class="p">()</span>
+
+ <span class="n">transitions</span> <span class="o">=</span> <span class="n">pahdb</span><span class="o">.</span><span class="n">gettransitionsbyuid</span><span class="p">(</span> \
+               <span class="n">pahdb</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;magnesium=0 oxygen=0 iron=0 silicium=0 chx=0 ch2=0 c&gt;20&quot;</span><span class="p">))</span>
+
+ <span class="n">transitions</span><span class="o">.</span><span class="n">fixedtemperature</span><span class="p">(</span><span class="mf">600.0</span><span class="p">)</span>
+
+ <span class="n">transitions</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="o">-</span><span class="mf">15.0</span><span class="p">)</span>
+
+ <span class="n">spectrum</span> <span class="o">=</span> <span class="n">transitions</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">grid</span><span class="o">=</span><span class="n">observation</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> \
+                                 <span class="n">fwhm</span><span class="o">=</span><span class="mf">15.0</span><span class="p">,</span>
+                                 <span class="n">gaussian</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+ <span class="n">intensity</span> <span class="o">=</span> \
+   <span class="p">[</span><span class="n">observation</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">observation</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">observation</span><span class="p">[</span><span class="mi">0</span><span class="p">]))])</span>
+
+ <span class="n">fit</span> <span class="o">=</span> <span class="n">spectrum</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">intensity</span><span class="p">)</span>
+
+ <span class="n">fit</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">wavelength</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+ <span class="n">fit</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">wavelength</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">residual</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+ <span class="n">fit</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">wavelength</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+ <span class="n">fit</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">wavelength</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">charge</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+ <span class="n">fit</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">wavelength</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">composition</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</div>
+<p>A line-by-line explanation of the code follows.</p>
+<blockquote>
+<div><div class="sphinx-tabs docutils container">
+<div class="ui top attached tabular menu sphinx-menu docutils container">
+<div class="active item sphinx-data-tab-SURM docutils container">
+<div class="docutils container">
+<p>IDL</p>
+</div>
+</div>
+<div class="item sphinx-data-tab-UHl0aG9u docutils container">
+<div class="docutils container">
+<p>Python</p>
+</div>
+</div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-SURM active docutils container">
+<p>lines 1-2: An observation is read from ‘myFile’ and the
+‘AmesPAHdbIDLSuite_CREATE_OBSERVATION_UNITS_S’-helper function
+is called to associate units.</p>
+<p>line 4: Observation abscissa units are converted to
+wavenumber.</p>
+<p>line 6: The observation is rebinned onto a uniform grid spaced
+5 cm<sup>-1</sup>.</p>
+<p>line 8: The default NASA Ames PAH IR Spectroscopic Database
+XML-file is loaded.</p>
+<p>lines 10-11: The fundamental vibrational transitions from a subset
+of PAHs are retrieved.</p>
+<p>line 13: A FixedTemperature emission model at 600 Kelvin is
+applied.</p>
+<p>line 15: The fundamental vibrational transitions are
+redshifted 15 cm<sup>-1</sup>.</p>
+<p>line 17: The fundamental vibrational transitions are convolved
+with Lorentzian profiles having a full-width-at-half-maximum
+of 20 cm<sup>-1</sup> onto the observational grid.</p>
+<p>line 21: The observation is fitted with the PAH emission
+spectra.</p>
+<p>line 23: Cleanup of ‘spectrum’.</p>
+<p>line 25-29: Display several aspects of the fit.</p>
+<p>line 31: The transitions are intersected with the PAH species
+in the fit.</p>
+<p>line 34: The fundamental vibrational transitions are again
+convolved with Lorentzian profiles having a
+full-width-at-half-maximum of 20<sup>-1</sup>, but now onto a
+generated grid from 3-10 micron.</p>
+<p>line 38: The individual PAH spectra are added using weights
+retrieved from the fit.</p>
+<p>line 40: The coadded spectrum is displayed, revealing the
+entire 3-20 micron, predicted, PAH spectrum.</p>
+<p>line 42: Cleanup.</p>
+<p>Line 25: A figure is displayed showing the fitted spectrum and
+its components, as shown below.</p>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-UHl0aG9u docutils container">
+<p>lines 1-2: Importing the necessary modules.</p>
+<p>lines 5-9: Read astronomical observation from ‘myFile’ in
+CSV-format.</p>
+<p>line 11: Observation abscissa units are converted to
+wavenumber.</p>
+<p>line 13: The default NASA Ames PAH IR Spectroscopic Database
+XML-file is loaded.</p>
+<p>line 15-16: The fundamental vibrational transitions from a subset
+of PAHs are retrieved.</p>
+<p>line 18: A FixedTemperature emission model at 600 Kelvin is
+applied.</p>
+<p>line 20: The fundamental vibrational transitions are
+redshifted 15 cm<sup>-1</sup>.</p>
+<p>lines 22-24: The fundamental vibrational transitions are
+convolved with Lorentzian profiles having a
+full-width-at-half-maximum of 15 cm<sup>-1</sup> onto the
+observational grid.</p>
+<p>line 26-27: Subtract the continuum component.</p>
+<p>line 29 The observation is fitted with the PAH emission spectra.</p>
+<p>line 31-39: Display several aspects of the fit.</p>
+</div>
+</div>
+</div></blockquote>
+<p>Below some examples of the generated output.</p>
+<div class="sphinx-tabs docutils container">
+<div class="ui top attached tabular menu sphinx-menu docutils container">
+<div class="active item sphinx-data-tab-SURM docutils container">
+<div class="docutils container">
+<p>IDL</p>
+</div>
+</div>
+<div class="item sphinx-data-tab-UHl0aG9u docutils container">
+<div class="docutils container">
+<p>Python</p>
+</div>
+</div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-SURM active docutils container">
+<div class="figure align-center" id="id1">
+<img alt="_images/1.png" src="_images/1.png" />
+<p class="caption"><span class="caption-text">Result of a PAHdb-fit to the 10-15 micron spectrum of NGC
+7023 showing the contribution from different PAHs.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-UHl0aG9u docutils container">
+<div class="figure align-center" id="id2">
+<img alt="_images/11.png" src="_images/11.png" />
+<p class="caption"><span class="caption-text">Result of a PAHdb-fit to the 10-15 micron spectrum of NGC
+7023 showing the contribution from different PAHs.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+</div>
+<div class="sphinx-tabs docutils container">
+<div class="ui top attached tabular menu sphinx-menu docutils container">
+<div class="active item sphinx-data-tab-SURM docutils container">
+<div class="docutils container">
+<p>IDL</p>
+</div>
+</div>
+<div class="item sphinx-data-tab-UHl0aG9u docutils container">
+<div class="docutils container">
+<p>Python</p>
+</div>
+</div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-SURM active docutils container">
+<div class="figure align-center" id="id3">
+<img alt="_images/2.png" src="_images/2.png" />
+<p class="caption"><span class="caption-text">Top: Result of a PAHdb-fit to the 10-15 micron spectrum of
+NGC 7023 showing the contribution from different
+PAHs. Bottom: Residual of the fit.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-UHl0aG9u docutils container">
+<div class="figure align-center" id="id4">
+<img alt="_images/21.png" src="_images/21.png" />
+<p class="caption"><span class="caption-text">Top: Result of a PAHdb-fit to the 10-15 micron spectrum of
+NGC 7023 showing the contribution from different
+PAHs. Bottom: Residual of the fit.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+</div>
+<div class="sphinx-tabs docutils container">
+<div class="ui top attached tabular menu sphinx-menu docutils container">
+<div class="active item sphinx-data-tab-SURM docutils container">
+<div class="docutils container">
+<p>IDL</p>
+</div>
+</div>
+<div class="item sphinx-data-tab-UHl0aG9u docutils container">
+<div class="docutils container">
+<p>Python</p>
+</div>
+</div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-SURM active docutils container">
+<div class="figure align-center" id="id5">
+<img alt="_images/3.png" src="_images/3.png" />
+<p class="caption"><span class="caption-text">Result of a PAHdb-fit to the 10-15 micron spectrum of NGC
+7023 showing the contribution from large and small PAHs.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-UHl0aG9u docutils container">
+<div class="figure align-center" id="id6">
+<img alt="_images/31.png" src="_images/31.png" />
+<p class="caption"><span class="caption-text">Result of a PAHdb-fit to the 10-15 micron spectrum of NGC
+7023 showing the contribution from large and small PAHs.</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+</div>
+<div class="sphinx-tabs docutils container">
+<div class="ui top attached tabular menu sphinx-menu docutils container">
+<div class="active item sphinx-data-tab-SURM docutils container">
+<div class="docutils container">
+<p>IDL</p>
+</div>
+</div>
+<div class="item sphinx-data-tab-UHl0aG9u docutils container">
+<div class="docutils container">
+<p>Python</p>
+</div>
+</div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-SURM active docutils container">
+<div class="figure align-center" id="id7">
+<img alt="_images/4.png" src="_images/4.png" />
+<p class="caption"><span class="caption-text">Result of a PAHdb-fit to the 10-15 micron spectrum of NGC
+7023 showing the contribution from PAH anions, neutrals and
+cation.</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-UHl0aG9u docutils container">
+<div class="figure align-center" id="id8">
+<img alt="_images/41.png" src="_images/41.png" />
+<p class="caption"><span class="caption-text">Result of a PAHdb-fit to the 10-15 micron spectrum of NGC
+7023 showing the contribution from PAH anions, neutrals and
+cation.</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+</div>
+<div class="sphinx-tabs docutils container">
+<div class="ui top attached tabular menu sphinx-menu docutils container">
+<div class="active item sphinx-data-tab-SURM docutils container">
+<div class="docutils container">
+<p>IDL</p>
+</div>
+</div>
+<div class="item sphinx-data-tab-UHl0aG9u docutils container">
+<div class="docutils container">
+<p>Python</p>
+</div>
+</div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-SURM active docutils container">
+<div class="figure align-center" id="id9">
+<img alt="_images/5.png" src="_images/5.png" />
+<p class="caption"><span class="caption-text">Result of a PAHdb-fit to the 10-15 micron spectrum of NGC
+7023 showing the contribution from ‘pure’ and nitrogen
+containing PAHs (PANHs).</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-UHl0aG9u docutils container">
+<div class="figure align-center" id="id10">
+<img alt="_images/51.png" src="_images/51.png" />
+<p class="caption"><span class="caption-text">Result of a PAHdb-fit to the 10-15 micron spectrum of NGC
+7023 showing the contribution from ‘pure’ and nitrogen
+containing PAHs (PANHs).</span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+</div>
+<div class="sphinx-tabs docutils container">
+<div class="ui top attached tabular menu sphinx-menu docutils container">
+<div class="active item sphinx-data-tab-SURM docutils container">
+<div class="docutils container">
+<p>IDL</p>
+</div>
+</div>
+</div>
+<div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-SURM active docutils container">
+<div class="figure align-center" id="id11">
+<img alt="_images/6.png" src="_images/6.png" />
+<p class="caption"><span class="caption-text">Predicted 4000-0 cm<sup>-1</sup> spectrum of NGC 7023 based
+on a PAHdb-fit to its 10-15 micron region showing the
+contribution from ‘pure’.</span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="sec_02.html" class="btn btn-neutral float-left" title="Recipes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Dr. Christiaan Boersma and Dr. Matthew J. Shannon
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

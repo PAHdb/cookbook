@@ -90,7 +90,7 @@
             
               <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="sec_01.html">API Overview</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="sec_01-first_steps.html">First steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sec_01-getting_started.html">Getting started</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sec_01-accessing_data.html">Accessing data</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Working with geometry data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sec_01-working_with_lab.html">Working with laboratory data</a></li>
@@ -101,18 +101,11 @@
 <li class="toctree-l2"><a class="reference internal" href="sec_01-working_with_obs.html">Working with observational data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sec_01-spectroscopic_fitting.html">Spectroscopic fitting</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sec_01-working_with_fitted_data.html">Working with fitted data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sec_01-working_outside_the_classes.html">Working outside the classes</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="sec_02.html">Recipes</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="sec_02-complete_example.html">A complete example</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="sec_02-complete_example.html#description-of-figures">Description of figures</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="sec_02-save_to_disk.html">Save to disk</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sec_02-plot_spectrum.html">Plot spectrum</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sec_02-compare_two_spectra.html">Comparing two spectra</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sec_02-add_spectra.html">Add two or more spectra</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sec_02-compare_lab_to_theory.html">Compare laboratory and theoretical spectra</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sec_02-fit_a_spectrum.html">Fit a spectrum</a></li>
 </ul>
 </li>
 </ul>
@@ -214,8 +207,7 @@
 </style>
 <div class="section" id="working-with-geometry-data">
 <h1>Working with geometry data<a class="headerlink" href="#working-with-geometry-data" title="Permalink to this headline">¶</a></h1>
-<p>The ‘AmesPAHdbIDLSuite_Geometry’-object exposes the molecular
-geometric data.</p>
+<p>Molecular geometry data is exposed through an ‘geometry’-instance.</p>
 <div class="sphinx-tabs docutils container">
 <div class="ui top attached tabular menu sphinx-menu docutils container">
 <div class="active item sphinx-data-tab-SURM docutils container">
@@ -244,10 +236,10 @@ geometry <span class="o">=</span> pahdb<span class="o">-&gt;</span>getGeometryBy
 </div>
 </div>
 </div>
-<p>The ‘AmesPAHdbIDLSuite_Geometry’-object provides both the ‘Plot’ and
+<p>The ‘geometry’-instance provides both the ‘Plot’ and
 ‘Structure’-methods to output the chemical structure of the PAH with
-provided UID. The first method uses IDL’s PLOT-procedures to create
-the output, while the latter IDL object graphics.</p>
+provided UID. The first method uses a 2D representation, while the
+latter a 3D one.</p>
 <div class="sphinx-tabs docutils container">
 <div class="ui top attached tabular menu sphinx-menu docutils container">
 <div class="active item sphinx-data-tab-SURM docutils container">
@@ -262,7 +254,7 @@ the output, while the latter IDL object graphics.</p>
 </div>
 </div>
 <div class="ui bottom attached sphinx-tab tab segment code-tab sphinx-data-tab-SURM active docutils container">
-<div class="highlight-idl notranslate"><div class="highlight"><pre><span></span><span class="c1">; UID 18 = coronene (C24H12)</span>
+<div class="highlight-idl notranslate"><div class="highlight"><pre><span></span><span class="c1">;; UID 18 = coronene (C24H12)</span>
 
 void <span class="o">=</span> geometry<span class="o">-&gt;</span><span class="nb">Plot</span>(<span class="mi">18</span>)
 
@@ -271,7 +263,9 @@ img <span class="o">=</span> geometry<span class="o">-&gt;</span>Structure(<span
 </div>
 </div>
 <div class="ui bottom attached sphinx-tab tab segment code-tab sphinx-data-tab-UHl0aG9u docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">geometry</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">18</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># UID 18 = coronene (C24H12)</span>
+
+<span class="n">geometry</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">18</span><span class="p">)</span>
 
 <span class="n">img</span> <span class="o">=</span> <span class="n">geometry</span><span class="o">.</span><span class="n">structure</span><span class="p">(</span><span class="mi">18</span><span class="p">)</span>
 </pre></div>
@@ -284,7 +278,7 @@ of the bonds, and if colors should be outputted as decomposed RGB,
 respectively. In addition, the ‘NoErase’ and ‘Position’-keywords
 control display erasing prior plotting and the plot position in
 normalized coordinates, respectively. When the ‘Resolution’-keyword
-is set, the plot will be rendered to IDL’s Z-buffer device at given
+is set, the plot will be rendered to a Z-buffer device at given
 resolution and outputted as an image and returned to the caller.
 When the ‘Save’-keyword is also set, a PNG-image will be generated
 as well, which will have the UID of the PAH molecule under
@@ -304,7 +298,7 @@ controls rotation of the structure around the z-axis.</p>
 </div>
 </div>
 <div class="ui bottom attached sphinx-tab tab segment code-tab sphinx-data-tab-SURM active docutils container">
-<div class="highlight-idl notranslate"><div class="highlight"><pre><span></span><span class="c1">; UID 18 = coronene (C24H12)</span>
+<div class="highlight-idl notranslate"><div class="highlight"><pre><span></span><span class="c1">;; UID 18 = coronene (C24H12)</span>
 
 img <span class="o">=</span> geometry<span class="o">-&gt;</span><span class="nb">Plot</span>(<span class="mi">18</span>, Scale<span class="o">=</span><span class="mf">2.0</span>, Thick<span class="o">=</span><span class="mf">5.0</span>, $
                  Resolution<span class="o">=</span>[<span class="mi">1200</span>, <span class="mi">1200</span>], <span class="o">/</span><span class="nb">Save</span>)
@@ -312,24 +306,26 @@ img <span class="o">=</span> geometry<span class="o">-&gt;</span><span class="nb
 </div>
 </div>
 <div class="ui bottom attached sphinx-tab tab segment code-tab sphinx-data-tab-UHl0aG9u docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">img</span> <span class="o">=</span> <span class="n">geometry</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">18</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># UID 18 = coronene (C24H12)</span>
+
+<span class="n">img</span> <span class="o">=</span> <span class="n">geometry</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">thick</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span> \
+                 <span class="n">resolution</span><span class="o">=</span><span class="p">(</span><span class="mi">1200</span><span class="p">,</span> <span class="mi">1200</span><span class="p">),</span> <span class="n">save</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>The ‘Structure’-method will accept the ‘Background’ and ‘Frame’-keywords
-to control background color and display of a wireframe. The
-‘Resolution’-keyword controls the dimension of the 3D-rendered output
-image. The ‘Save’-keyword can be specified to save the generated
-image as a PNG-image as well, which will have the UID of the PAH
-molecule under consideration embedded in the filename. If in addition
-the ‘Transparent’-keyword is specified as a color-triplet array, that
-color will be set to transparent in the generated PNG-file. The ‘Axis’
-and ‘Angle’-keywords can control axis and angle of rotation,
-respectively. With the ‘View’-keyword set the generated structure
-will be displayed using IDL’s XOBJVIEW routine. Lastly, when the
-‘Obj’-keyword is set, the generated IDLgrModel-object is returned to
-the caller.</p>
+<p>The ‘Structure’-method will accept the ‘Background’ and
+‘Frame’-keywords to control background color and display of a
+wireframe. The ‘Resolution’-keyword controls the dimension of the
+3D-rendered output image. The ‘Save’-keyword can be specified to save
+the generated image as a PNG-image as well, which will have the UID of
+the PAH molecule under consideration embedded in the filename. If in
+addition the ‘Transparent’-keyword is specified as a color-triplet
+array, that color will be set to transparent in the generated
+PNG-file. The ‘Axis’ and ‘Angle’-keywords can control axis and angle
+of rotation, respectively. With the ‘View’-keyword set the generated
+structure will be rendered on screen. Lastly, when the ‘Obj’-keyword
+is set, the generated 3D model is returned to the caller.</p>
 <div class="sphinx-tabs docutils container">
 <div class="ui top attached tabular menu sphinx-menu docutils container">
 <div class="active item sphinx-data-tab-SURM docutils container">
@@ -344,7 +340,7 @@ the caller.</p>
 </div>
 </div>
 <div class="ui bottom attached sphinx-tab tab segment code-tab sphinx-data-tab-SURM active docutils container">
-<div class="highlight-idl notranslate"><div class="highlight"><pre><span></span><span class="c1">; UID 18 = coronene (C24H12)</span>
+<div class="highlight-idl notranslate"><div class="highlight"><pre><span></span><span class="c1">;; UID 18 = coronene (C24H12)</span>
 
 img <span class="o">=</span> geometry<span class="o">-&gt;</span>Structure(<span class="mi">18</span>, Background<span class="o">=</span>[<span class="mi">0</span>, <span class="mi">255</span>, <span class="mi">0</span>], $
                               Resolution<span class="o">=</span>[<span class="mi">600</span>, <span class="mi">600</span>], $
@@ -354,15 +350,18 @@ img <span class="o">=</span> geometry<span class="o">-&gt;</span>Structure(<span
 </div>
 </div>
 <div class="ui bottom attached sphinx-tab tab segment code-tab sphinx-data-tab-UHl0aG9u docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">img</span> <span class="o">=</span> <span class="n">geometry</span><span class="o">.</span><span class="n">structure</span><span class="p">(</span><span class="mi">18</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">img</span> <span class="o">=</span> <span class="n">geometry</span><span class="o">.</span><span class="n">structure</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="n">background</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> \
+                             <span class="n">resolution</span><span class="o">=</span><span class="p">(</span><span class="mi">600</span><span class="p">,</span> <span class="mi">600</span><span class="p">),</span> \
+                              <span class="n">save</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">transparent</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> \
+                              <span class="n">view</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>In addition, the ‘AmesPAHdbIDLSuite_Geometry’-object provides the
-‘Mass’, ‘Rings’, and ‘Area’-methods that return the calculated mass
-based on atomic masses, the number of 3-8 membered rings, and total
-surface area of the PAH molecules under consideration.</p>
+<p>In addition, the ‘geometry’-instance provides the ‘Mass’, ‘Rings’, and
+‘Area’-methods that return the calculated mass based on atomic masses,
+the number of 3-8 membered rings, and total surface area of the PAH
+molecules under consideration.</p>
 <div class="sphinx-tabs docutils container">
 <div class="ui top attached tabular menu sphinx-menu docutils container">
 <div class="active item sphinx-data-tab-SURM docutils container">

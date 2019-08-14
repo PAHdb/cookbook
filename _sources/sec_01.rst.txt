@@ -3,15 +3,18 @@
 API Overview
 ##############
 
-This section provides an overview of the application programming interface (API)
-used in both the IDL and Python suites. The API is designed around an object-oriented
-paradigm where each instance is in control of its own data.
+Before moving to the recipes themselves, an overview of the
+Application Programming Interface (API) used by the (offline) software
+tools is presented. PAHdb's (offline) software tools follow largely
+the same API for both the IDL and Python implementations. The API is
+designed around an object-oriented paradigm where each class handles a
+distinct aspect of the spectroscopic data and/or models. Each of these
+aspects is discussed in turn.
 
 .. toctree::
    :maxdepth: 1
-   :hidden:
 
-   sec_01-first_steps
+   sec_01-getting_started
    sec_01-accessing_data
    sec_01-working_with_geometry
    sec_01-working_with_lab
@@ -22,3 +25,4 @@ paradigm where each instance is in control of its own data.
    sec_01-working_with_obs
    sec_01-spectroscopic_fitting
    sec_01-working_with_fitted_data
+   sec_01-working_outside_the_classes

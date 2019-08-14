@@ -37,7 +37,7 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="First steps" href="sec_01-first_steps.html" />
+    <link rel="next" title="Getting started" href="sec_01-getting_started.html" />
     <link rel="prev" title="Cookbook" href="index.html" /> 
 </head>
 
@@ -84,7 +84,7 @@
             
               <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">API Overview</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="sec_01-first_steps.html">First steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sec_01-getting_started.html">Getting started</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sec_01-accessing_data.html">Accessing data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sec_01-working_with_geometry.html">Working with geometry data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sec_01-working_with_lab.html">Working with laboratory data</a></li>
@@ -95,18 +95,11 @@
 <li class="toctree-l2"><a class="reference internal" href="sec_01-working_with_obs.html">Working with observational data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sec_01-spectroscopic_fitting.html">Spectroscopic fitting</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sec_01-working_with_fitted_data.html">Working with fitted data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sec_01-working_outside_the_classes.html">Working outside the classes</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="sec_02.html">Recipes</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="sec_02-complete_example.html">A complete example</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="sec_02-complete_example.html#description-of-figures">Description of figures</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="sec_02-save_to_disk.html">Save to disk</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sec_02-plot_spectrum.html">Plot spectrum</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sec_02-compare_two_spectra.html">Comparing two spectra</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sec_02-add_spectra.html">Add two or more spectra</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sec_02-compare_lab_to_theory.html">Compare laboratory and theoretical spectra</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sec_02-fit_a_spectrum.html">Fit a spectrum</a></li>
 </ul>
 </li>
 </ul>
@@ -168,7 +161,7 @@
   
   <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
       
-        <a href="sec_01-first_steps.html" class="btn btn-neutral float-right" title="First steps" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="sec_01-getting_started.html" class="btn btn-neutral float-right" title="Getting started" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="index.html" class="btn btn-neutral float-left" title="Cookbook" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -206,10 +199,28 @@
 </style>
 <div class="section" id="api-overview">
 <h1>API Overview<a class="headerlink" href="#api-overview" title="Permalink to this headline">¶</a></h1>
-<p>This section provides an overview of the application programming interface (API)
-used in both the IDL and Python suites. The API is designed around an object-oriented
-paradigm where each instance is in control of its own data.</p>
+<p>Before moving to the recipes themselves, an overview of the
+Application Programming Interface (API) used by the (offline) software
+tools is presented. PAHdb’s (offline) software tools follow largely
+the same API for both the IDL and Python implementations. The API is
+designed around an object-oriented paradigm where each class handles a
+distinct aspect of the spectroscopic data and/or models. Each of these
+aspects is discussed in turn.</p>
 <div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sec_01-getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sec_01-accessing_data.html">Accessing data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sec_01-working_with_geometry.html">Working with geometry data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sec_01-working_with_lab.html">Working with laboratory data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sec_01-working_with_transitions.html">Working with transition data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sec_01-using_emission_models.html">Using emission models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sec_01-creating_spectra.html">Creating spectra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sec_01-working_with_spectra.html">Working with spectra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sec_01-working_with_obs.html">Working with observational data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sec_01-spectroscopic_fitting.html">Spectroscopic fitting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sec_01-working_with_fitted_data.html">Working with fitted data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sec_01-working_outside_the_classes.html">Working outside the classes</a></li>
+</ul>
 </div>
 </div>
 
@@ -221,7 +232,7 @@ paradigm where each instance is in control of its own data.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="sec_01-first_steps.html" class="btn btn-neutral float-right" title="First steps" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="sec_01-getting_started.html" class="btn btn-neutral float-right" title="Getting started" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="index.html" class="btn btn-neutral float-left" title="Cookbook" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

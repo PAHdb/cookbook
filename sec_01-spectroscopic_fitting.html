@@ -90,7 +90,7 @@
             
               <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="sec_01.html">API Overview</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="sec_01-first_steps.html">First steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sec_01-getting_started.html">Getting started</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sec_01-accessing_data.html">Accessing data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sec_01-working_with_geometry.html">Working with geometry data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sec_01-working_with_lab.html">Working with laboratory data</a></li>
@@ -101,18 +101,11 @@
 <li class="toctree-l2"><a class="reference internal" href="sec_01-working_with_obs.html">Working with observational data</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Spectroscopic fitting</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sec_01-working_with_fitted_data.html">Working with fitted data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sec_01-working_outside_the_classes.html">Working outside the classes</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="sec_02.html">Recipes</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="sec_02-complete_example.html">A complete example</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="sec_02-complete_example.html#description-of-figures">Description of figures</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="sec_02-save_to_disk.html">Save to disk</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sec_02-plot_spectrum.html">Plot spectrum</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sec_02-compare_two_spectra.html">Comparing two spectra</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sec_02-add_spectra.html">Add two or more spectra</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sec_02-compare_lab_to_theory.html">Compare laboratory and theoretical spectra</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sec_02-fit_a_spectrum.html">Fit a spectrum</a></li>
 </ul>
 </li>
 </ul>
@@ -214,14 +207,13 @@
 </style>
 <div class="section" id="spectroscopic-fitting">
 <h1>Spectroscopic fitting<a class="headerlink" href="#spectroscopic-fitting" title="Permalink to this headline">¶</a></h1>
-<p>Spectroscopic database fitting is handled by the
-‘AmesPAHdbIDLSuite_Spectrum’-object and it either accepts an
-‘AmesPAHdbIDLSuite_Observation’-object, or a simple array of ordinates
-with an optional array of ordinate uncertainties. Whether ordinate
-uncertainties are provided or not, the ‘AmesPAHdbIDLSuite_Spectrum’-
-object’s ‘Fit’-method will perform a non-negative least-chi-square or
+<p>Spectroscopic database fitting is handled by the ‘spectrum’-instance
+and it either accepts an ‘observation’-instance, or simply an array of
+ordinates with an optional array of ordinate uncertainties. Whether
+ordinate uncertainties are provided or not, the ‘spectrum’- instance’s
+‘Fit’-method will perform a non-negative least-chi-square or
 non-negative least-square fit and return an
-‘AmesPAHdbIDLSuite_Fitted_Spectrum’-object.</p>
+‘fit’-instance.</p>
 <div class="sphinx-tabs docutils container">
 <div class="ui top attached tabular menu sphinx-menu docutils container">
 <div class="active item sphinx-data-tab-SURM docutils container">
@@ -236,12 +228,32 @@ non-negative least-square fit and return an
 </div>
 </div>
 <div class="ui bottom attached sphinx-tab tab segment code-tab sphinx-data-tab-SURM active docutils container">
-<div class="highlight-idl notranslate"><div class="highlight"><pre><span></span>fit <span class="o">=</span> spectrum<span class="o">-&gt;</span>Fit(intensity, uncertainty)
+<div class="highlight-idl notranslate"><div class="highlight"><pre><span></span><span class="c1">;; Using an &#39;observation&#39;-instance</span>
+
+fit <span class="o">=</span> spectrum<span class="o">-&gt;</span>Fit(observation)
+
+<span class="c1">;; Using an array of ordinate values</span>
+
+fit <span class="o">=</span> spectrum<span class="o">-&gt;</span>Fit(intensity)
+
+<span class="c1">;; Using an array of ordinate uncertainty values</span>
+
+fit <span class="o">=</span> spectrum<span class="o">-&gt;</span>Fit(intensity, uncertainty)
 </pre></div>
 </div>
 </div>
 <div class="ui bottom attached sphinx-tab tab segment code-tab sphinx-data-tab-UHl0aG9u docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Placeholder</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Using an &#39;observation&#39;-instance</span>
+
+<span class="n">fit</span> <span class="o">=</span> <span class="n">spectrum</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">observation</span><span class="p">)</span>
+
+<span class="c1"># Using an array of ordinate values</span>
+
+<span class="n">fit</span> <span class="o">=</span> <span class="n">spectrum</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">intensity</span><span class="p">)</span>
+
+<span class="c1"># Using an array of ordinate uncertainty values</span>
+
+<span class="n">fit</span> <span class="o">=</span> <span class="n">spectrum</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">intensity</span><span class="p">,</span> <span class="n">uncertainty</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

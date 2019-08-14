@@ -13,7 +13,7 @@
 ./_sources/index.rst.txt
 ./_sources/sec_01-accessing_data.rst.txt
 ./_sources/sec_01-creating_spectra.rst.txt
-./_sources/sec_01-first_steps.rst.txt
+./_sources/sec_01-getting_started.rst.txt
 ./_sources/sec_01-spectroscopic_fitting.rst.txt
 ./_sources/sec_01-using_emission_models.rst.txt
 ./_sources/sec_01-working_outside_the_classes.rst.txt
@@ -24,12 +24,7 @@
 ./_sources/sec_01-working_with_spectra.rst.txt
 ./_sources/sec_01-working_with_transitions.rst.txt
 ./_sources/sec_01.rst.txt
-./_sources/sec_02-add_spectra.rst.txt
-./_sources/sec_02-compare_lab_to_theory.rst.txt
-./_sources/sec_02-compare_two_spectra.rst.txt
-./_sources/sec_02-complete_example.rst.txt
-./_sources/sec_02-plot_spectrum.rst.txt
-./_sources/sec_02-save_to_disk.rst.txt
+./_sources/sec_02-fit_a_spectrum.rst.txt
 ./_sources/sec_02.rst.txt
 ./_static/basic.css
 ./_static/css/badge_only.css
@@ -98,7 +93,7 @@
 ./searchindex.js
 ./sec_01-accessing_data.html
 ./sec_01-creating_spectra.html
-./sec_01-first_steps.html
+./sec_01-getting_started.html
 ./sec_01-spectroscopic_fitting.html
 ./sec_01-using_emission_models.html
 ./sec_01-working_outside_the_classes.html
@@ -109,10 +104,5 @@
 ./sec_01-working_with_spectra.html
 ./sec_01-working_with_transitions.html
 ./sec_01.html
-./sec_02-add_spectra.html
-./sec_02-compare_lab_to_theory.html
-./sec_02-compare_two_spectra.html
-./sec_02-complete_example.html
-./sec_02-plot_spectrum.html
-./sec_02-save_to_disk.html
+./sec_02-fit_a_spectrum.html
 ./sec_02.html

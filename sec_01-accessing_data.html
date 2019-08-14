@@ -44,7 +44,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Working with geometry data" href="sec_01-working_with_geometry.html" />
-    <link rel="prev" title="First steps" href="sec_01-first_steps.html" /> 
+    <link rel="prev" title="Getting started" href="sec_01-getting_started.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -90,7 +90,7 @@
             
               <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="sec_01.html">API Overview</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="sec_01-first_steps.html">First steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sec_01-getting_started.html">Getting started</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Accessing data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sec_01-working_with_geometry.html">Working with geometry data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sec_01-working_with_lab.html">Working with laboratory data</a></li>
@@ -101,18 +101,11 @@
 <li class="toctree-l2"><a class="reference internal" href="sec_01-working_with_obs.html">Working with observational data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sec_01-spectroscopic_fitting.html">Spectroscopic fitting</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sec_01-working_with_fitted_data.html">Working with fitted data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sec_01-working_outside_the_classes.html">Working outside the classes</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="sec_02.html">Recipes</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="sec_02-complete_example.html">A complete example</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="sec_02-complete_example.html#description-of-figures">Description of figures</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="sec_02-save_to_disk.html">Save to disk</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sec_02-plot_spectrum.html">Plot spectrum</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sec_02-compare_two_spectra.html">Comparing two spectra</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sec_02-add_spectra.html">Add two or more spectra</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sec_02-compare_lab_to_theory.html">Compare laboratory and theoretical spectra</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sec_02-fit_a_spectrum.html">Fit a spectrum</a></li>
 </ul>
 </li>
 </ul>
@@ -179,7 +172,7 @@
         <a href="sec_01-working_with_geometry.html" class="btn btn-neutral float-right" title="Working with geometry data" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="sec_01-first_steps.html" class="btn btn-neutral float-left" title="First steps" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="sec_01-getting_started.html" class="btn btn-neutral float-left" title="Getting started" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
   </div>
   
@@ -214,7 +207,11 @@
 </style>
 <div class="section" id="accessing-data">
 <h1>Accessing data<a class="headerlink" href="#accessing-data" title="Permalink to this headline">¶</a></h1>
-<p>The molecular PAH data is accessed through their associated unique identifier (UID). However, a search-interface is available that allows retrieval of these UIDs through simplified queries. The syntax is the same as used on the NASA Ames PAH IR Spectroscopic Database website.</p>
+<p>The molecular PAH data is accessed through their associated unique
+identifiers (UIDs). However, a search-interface is available that
+allows retrieval of these UIDs through simplified queries. The syntax
+is identical to that used on the NASA Ames PAH IR Spectroscopic
+Database website.</p>
 <div class="sphinx-tabs docutils container">
 <div class="ui top attached tabular menu sphinx-menu docutils container">
 <div class="active item sphinx-data-tab-SURM docutils container">
@@ -239,14 +236,16 @@
 </div>
 </div>
 </div>
-<p>The molecular PAH data contained in the database XML-files consists
-of four main parts:</p>
-<ul class="simple">
-<li><p>Molecular properties, .e.g, molecular weight, zero point energy, total energy, etc.</p></li>
-<li><p>Fundamental vibrational transitions</p></li>
-<li><p>Molecular geometric data</p></li>
-<li><p>Raw laboratory spectra for a subset of molecules in the experimental database</p></li>
-</ul>
+<p>The molecular PAH data contained in the database XML-files consists of
+four main components:</p>
+<ol class="arabic simple">
+<li><p>Properties, .e.g, molecular weight, zero point energy,
+total energy, etc.</p></li>
+<li><p>Vibrational transitions</p></li>
+<li><p>Geometric data</p></li>
+<li><p>Laboratory spectra</p></li>
+</ol>
+<p>The following illustrates how to access these components.</p>
 <div class="sphinx-tabs docutils container">
 <div class="ui top attached tabular menu sphinx-menu docutils container">
 <div class="active item sphinx-data-tab-SURM docutils container">
@@ -273,7 +272,7 @@ geometries <span class="o">=</span> pahdb<span class="o">-&gt;</span>getGeometry
 
 laboratory <span class="o">=</span> pahdb<span class="o">-&gt;</span>getLaboratoryByUID(uids)
 
-<span class="c1">; ... work ...</span>
+<span class="c1">;; work ...</span>
 
 <span class="nb">OBJ_DESTROY</span>,[laboratory, $
              geometries, $
@@ -296,13 +295,13 @@ laboratory <span class="o">=</span> pahdb<span class="o">-&gt;</span>getLaborato
 
 <span class="n">laboratory</span> <span class="o">=</span> <span class="n">pahdb</span><span class="o">.</span><span class="n">getlaboratorybyuid</span><span class="p">(</span><span class="n">uids</span><span class="p">)</span>
 
-<span class="c1"># ... work ...</span>
+<span class="c1"># work ...</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>Alternatively, one can access these data components through the
-‘AmesPAHdbIDLSuite_Species’-object.</p>
+<p>Alternatively, one can access these components through the
+‘species’-instance.</p>
 <div class="sphinx-tabs docutils container">
 <div class="ui top attached tabular menu sphinx-menu docutils container">
 <div class="active item sphinx-data-tab-SURM docutils container">
@@ -328,7 +327,7 @@ geometries <span class="o">=</span> pahs<span class="o">-&gt;</span>geometry()
 
 laboratory <span class="o">=</span> pahs<span class="o">-&gt;</span>laboratory()
 
-<span class="c1">; ... work ...</span>
+<span class="c1">;; work ...</span>
 
 <span class="nb">OBJ_DESTROY</span>,[laboratory, $
              geometries, $
@@ -341,7 +340,8 @@ laboratory <span class="o">=</span> pahs<span class="o">-&gt;</span>laboratory()
 <div class="ui bottom attached sphinx-tab tab segment code-tab sphinx-data-tab-UHl0aG9u docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pahdb</span> <span class="o">=</span> <span class="n">Amespahdbpythonsuite</span><span class="p">()</span>
 
-<span class="n">pahs</span> <span class="o">=</span> <span class="n">pahdb</span><span class="o">.</span><span class="n">getspeciesbyuid</span><span class="p">(</span><span class="n">pahdb</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;c&lt;=20 neutral n=2 neutral&quot;</span><span class="p">))</span>
+<span class="n">pahs</span> <span class="o">=</span> <span class="n">pahdb</span><span class="o">.</span><span class="n">getspeciesbyuid</span><span class="p">(</span> \
+             <span class="n">pahdb</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;c&lt;=20 neutral n=2 neutral&quot;</span><span class="p">))</span>
 
 <span class="n">transitions</span> <span class="o">=</span> <span class="n">pahs</span><span class="o">.</span><span class="n">transitions</span><span class="p">()</span>
 
@@ -349,7 +349,7 @@ laboratory <span class="o">=</span> pahs<span class="o">-&gt;</span>laboratory()
 
 <span class="n">laboratory</span> <span class="o">=</span> <span class="n">pahs</span><span class="o">.</span><span class="n">laboratory</span><span class="p">()</span>
 
-<span class="c1"># ... work ...</span>
+<span class="c1"># work ...</span>
 </pre></div>
 </div>
 </div>
@@ -367,7 +367,7 @@ laboratory <span class="o">=</span> pahs<span class="o">-&gt;</span>laboratory()
         <a href="sec_01-working_with_geometry.html" class="btn btn-neutral float-right" title="Working with geometry data" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="sec_01-first_steps.html" class="btn btn-neutral float-left" title="First steps" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="sec_01-getting_started.html" class="btn btn-neutral float-left" title="Getting started" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

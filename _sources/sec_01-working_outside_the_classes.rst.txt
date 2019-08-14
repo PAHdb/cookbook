@@ -2,7 +2,8 @@
 Working outside the classes
 ==============================
 
-The AmesPAHdbIDLSuite object classes all provide the 'Get'-method that allows extraction of the object's internal data into an anonymous IDL struct.
+The software classes all provide the 'Get'-method that allows
+extraction of an instance's internal data.
 
 .. tabs::
 
@@ -12,7 +13,7 @@ The AmesPAHdbIDLSuite object classes all provide the 'Get'-method that allows ex
 
     .. code-tab:: python
 
-        # Placeholder
+        transitions_dict = transitions->get()
 
 This allows, for example, more control over the presentation of the data.
 
@@ -27,9 +28,17 @@ This allows, for example, more control over the presentation of the data.
 
     .. code-tab:: python
 
-        # Placeholder
+        import matplotlib.pyplot as plt
 
-Subsequently this anonymous structure can be manipulated and even be set to the object, which will try altering its internal state to reflect that of the manipulated data.
+	plt.plot(transitions_dict['data']['frequency'], transitions_dict['data']['intensity'])
+	plt.xlabel(transitions_dict['units']['x']['str'])
+        plt.ylabel('integrated intensity [cm!U-2!N mol!U-1!N]')
+        plt.show()
+
+
+Subsequently these data can be manipulated and even be set to the
+instancer, which will try altering its internal state to reflect that
+of the manipulated data.
 
 .. tabs::
 
@@ -39,9 +48,10 @@ Subsequently this anonymous structure can be manipulated and even be set to the 
 
     .. code-tab:: python
 
-        # Placeholder
+         transitions.set(transitions_dict)
 
-In addition, the 'Set'-method accepts keywords to alter its internal state.
+In addition, the 'Set'-method accepts keywords to alter its internal
+state.
 
 .. tabs::
 
@@ -51,9 +61,10 @@ In addition, the 'Set'-method accepts keywords to alter its internal state.
 
     .. code-tab:: python
 
-        # Placeholder
+        transitions.set(data=transitions_dict['data'])
 
-Lastly, it is also possible to create new AmesPAHdbIDLSuite-objects initialized with an appropriate anonymous structure or through keywords.
+Lastly, it is also possible to create new intances initialized with an
+appropriate data representation or through keywords.
 
 .. tabs::
 
@@ -72,4 +83,13 @@ Lastly, it is also possible to create new AmesPAHdbIDLSuite-objects initialized 
 
     .. code-tab:: python
 
-        # Placeholder
+        transitions = transitions(transitions_dict)
+
+        transitions = trantions(type=transitions_dict['type'], \
+                                version=transitions_dict['version'], \
+                                pahdb=pahdb, \
+                                data=transitions_dict['data'], \
+                                uids=transitions_dict['uids'], \
+                                model=transitions_dict['model'], \
+                                units=transitions_dict['units'])
+

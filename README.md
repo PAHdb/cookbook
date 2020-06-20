@@ -2,14 +2,17 @@
 
 # NASA Ames PAH IR Spectroscopic Database Cookbook
 
-This is the source directory of the cookbook accompanying the NASA
-Ames PAH IR Spectroscopic Database analysis tools.
+This is the source code for generating the online cookbook with
+recipes for using the NASA Ames PAH IR Spectroscopic Database analysis
+tools.
 
 ### Prerequisites
 
-The documentation is build using Python Sphinx. The Python
-dependencies can be found in the [requirements.txt](requirements.txt)
-file.
+The cookbook is build using Python Sphinx. The Python dependencies can
+be found in the [requirements.txt](requirements.txt) file and
+installed via
+
+``pip install -r requirements.txt``
 
 ## Authors
 

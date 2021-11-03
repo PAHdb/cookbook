@@ -1,4 +1,4 @@
-[![Travis Status](https://img.shields.io/travis/PAHdb/cookbook.svg)](https://travis-ci.org/PAHdb/cookbook) [![Documentation](https://img.shields.io/badge/docs-available-brightgreen.svg)](https://pahdb.github.io/cookbook/)
+![Workflow Status](https://github.com/pahdb/cookbook/actions/workflows/ci.yml/badge.svg) [![Documentation](https://img.shields.io/badge/docs-available-brightgreen.svg)](https://pahdb.github.io/cookbook/)
 
 # NASA Ames PAH IR Spectroscopic Database Cookbook
 
@@ -6,7 +6,7 @@ This is the source code for generating the online cookbook with
 recipes for using the NASA Ames PAH IR Spectroscopic Database analysis
 tools.
 
-### Prerequisites
+## Prerequisites
 
 The cookbook is build using Python Sphinx. The Python dependencies can
 be found in the [requirements.txt](requirements.txt) file and
@@ -24,4 +24,3 @@ installed via
 * The NASA Ames PAH IR Spectroscopic Database Team
 * The Astrophysics & Astrochemistry Laboratory at NASA Ames Research
   Center - [www.astrochemistry.org](http://www.astrochemistry.org)
-

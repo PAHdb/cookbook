@@ -1,26 +1,29 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Fit a spectrum &mdash; PAHdb cookbook  documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/tabs.css?v=a5c4661c" />
+
+  
     <link rel="shortcut icon" href="_static/touch-icon-310x310.png"/>
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/tabs.js"></script>
+        <script src="_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="_static/tabs.js?v=3030b3cb"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Stellar Kurucz Model" href="sec_02-stellar_kurucz_model.html" />
     <link rel="prev" title="Recipes" href="sec_02.html" /> 
 </head>
 
@@ -29,11 +32,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> PAHdb cookbook
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            PAHdb cookbook
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -57,6 +64,7 @@
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="sec_02.html">Recipes</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Fit a spectrum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sec_02-stellar_kurucz_model.html">Stellar Kurucz Model</a></li>
 </ul>
 </li>
 </ul>
@@ -74,71 +82,48 @@
         <div class="rst-content style-external-links">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="sec_02.html">Recipes</a> &raquo;</li>
-      <li>Fit a spectrum</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="sec_02.html">Recipes</a></li>
+      <li class="breadcrumb-item active">Fit a spectrum</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
         <a href="sec_02.html" class="btn btn-neutral float-left" title="Recipes" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="sec_02-stellar_kurucz_model.html" class="btn btn-neutral float-right" title="Stellar Kurucz Model" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
   </div>
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  
-<style>
-/* CSS overrides for sphinx_rtd_theme */
-
-/* 24px margin */
-.nbinput.nblast.container,
-.nboutput.nblast.container {
-    margin-bottom: 19px;  /* padding has already 5px */
-}
-
-/* ... except between code cells! */
-.nblast.container + .nbinput.container {
-    margin-top: -19px;
-}
-
-.admonition > p:before {
-    margin-right: 4px;  /* make room for the exclamation icon */
-}
-
-/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
-.math {
-    text-align: unset;
-}
-</style>
-<div class="section" id="fit-a-spectrum">
-<h1>Fit a spectrum<a class="headerlink" href="#fit-a-spectrum" title="Permalink to this headline">¶</a></h1>
+  <section id="fit-a-spectrum">
+<h1>Fit a spectrum<a class="headerlink" href="#fit-a-spectrum" title="Link to this heading">¶</a></h1>
 <p>A complete example of fitting an astronomical spectrum is shown
 below. It is an adaption of ‘fit_a_spectrum’ found in the
 examples-directory of the software tools, and is followed by a
 detailed, line-by-line, explanation of the code.</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-SURM" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-0-SURM" name="SURM" role="tab" tabindex="0">IDL</button><button aria-controls="panel-0-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-0-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-0-SURM" class="sphinx-tabs-panel code-tab group-tab" id="panel-0-SURM" name="SURM" role="tabpanel" tabindex="0"><div class="highlight-idl notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>observation <span class="o">=</span> <span class="nb">OBJ_NEW</span>(<span class="s1">&#39;AmesPAHdbIDLSuite_Observation&#39;</span>, <span class="s1">&#39;myFile&#39;</span>, $
-<span class="linenos"> 2</span>                       Units<span class="o">=</span>AmesPAHdbIDLSuite_CREATE_OBSERVATION_UNITS_S())
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-SURM" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-0-SURM" name="SURM" role="tab" tabindex="0">IDL</button><button aria-controls="panel-0-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-0-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-0-SURM" class="sphinx-tabs-panel code-tab group-tab" id="panel-0-SURM" name="SURM" role="tabpanel" tabindex="0"><div class="highlight-idl notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>observation<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">OBJ_NEW</span>(<span class="s1">&#39;AmesPAHdbIDLSuite_Observation&#39;</span>,<span class="w"> </span><span class="s1">&#39;myFile&#39;</span>,<span class="w"> </span>$
+<span class="linenos"> 2</span><span class="w">                       </span>Units<span class="o">=</span>AmesPAHdbIDLSuite_CREATE_OBSERVATION_UNITS_S())
 <span class="linenos"> 3</span>
 <span class="linenos"> 4</span>observation<span class="o">-&gt;</span>AbscissaUnitsTo,<span class="mi">1</span>
 <span class="linenos"> 5</span>
 <span class="linenos"> 6</span>observation<span class="o">-&gt;</span><span class="nb">Rebin</span>,5D,<span class="o">/</span>Uniform
 <span class="linenos"> 7</span>
-<span class="linenos"> 8</span>pahdb <span class="o">=</span> <span class="nb">OBJ_NEW</span>(<span class="s1">&#39;AmesPAHdbIDLSuite&#39;</span>)
+<span class="linenos"> 8</span>pahdb<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">OBJ_NEW</span>(<span class="s1">&#39;AmesPAHdbIDLSuite&#39;</span>)
 <span class="linenos"> 9</span>
-<span class="linenos">10</span>transitions <span class="o">=</span> pahdb<span class="o">-&gt;</span>getTransitionsByUID( $
-<span class="linenos">11</span>              pahdb<span class="o">-&gt;</span>Search(<span class="s2">&quot;mg=0 o=0 fe=0 si=0 chx=0 ch2=0 c&gt;20&quot;</span>))
+<span class="linenos">10</span>transitions<span class="w"> </span><span class="o">=</span><span class="w"> </span>pahdb<span class="o">-&gt;</span>getTransitionsByUID(<span class="w"> </span>$
+<span class="linenos">11</span><span class="w">              </span>pahdb<span class="o">-&gt;</span>Search(<span class="s2">&quot;mg=0 o=0 fe=0 si=0 chx=0 ch2=0 c&gt;20&quot;</span>))
 <span class="linenos">12</span>
 <span class="linenos">13</span>transitions<span class="o">-&gt;</span>FixedTemperature,600D
 <span class="linenos">14</span>
 <span class="linenos">15</span>transitions<span class="o">-&gt;</span><span class="nb">Shift</span>,<span class="o">-</span>15D
 <span class="linenos">16</span>
-<span class="linenos">17</span>spectrum <span class="o">=</span> transitions<span class="o">-&gt;</span>Convolve(<span class="o">/</span>Lorentzian, $
-<span class="linenos">18</span>                                 Grid<span class="o">=</span>observation<span class="o">-&gt;</span>getGrid(), $
-<span class="linenos">19</span>                                 FWHM<span class="o">=</span>20D)
+<span class="linenos">17</span>spectrum<span class="w"> </span><span class="o">=</span><span class="w"> </span>transitions<span class="o">-&gt;</span>Convolve(<span class="o">/</span>Lorentzian,<span class="w"> </span>$
+<span class="linenos">18</span><span class="w">                                 </span>Grid<span class="o">=</span>observation<span class="o">-&gt;</span>getGrid(),<span class="w"> </span>$
+<span class="linenos">19</span><span class="w">                                 </span>FWHM<span class="o">=</span>20D)
 <span class="linenos">20</span>
-<span class="linenos">21</span>fit <span class="o">=</span> spectrum<span class="o">-&gt;</span>Fit(observation)
+<span class="linenos">21</span>fit<span class="w"> </span><span class="o">=</span><span class="w"> </span>spectrum<span class="o">-&gt;</span>Fit(observation)
 <span class="linenos">22</span>
 <span class="linenos">23</span><span class="nb">OBJ_DESTROY</span>,spectrum
 <span class="linenos">24</span>
@@ -148,18 +133,18 @@ detailed, line-by-line, explanation of the code.</p>
 <span class="linenos">28</span>
 <span class="linenos">29</span>fit<span class="o">-&gt;</span><span class="nb">Plot</span>,<span class="o">/</span>Wavelength,<span class="o">/</span>Charge
 <span class="linenos">30</span>
-<span class="linenos">31</span>transitions<span class="o">-&gt;</span>Intersect, $
-<span class="linenos">32</span>        fit<span class="o">-&gt;</span>getUIDs()
+<span class="linenos">31</span>transitions<span class="o">-&gt;</span>Intersect,<span class="w"> </span>$
+<span class="linenos">32</span><span class="w">        </span>fit<span class="o">-&gt;</span>getUIDs()
 <span class="linenos">33</span>
-<span class="linenos">34</span>spectrum <span class="o">=</span> transitions<span class="o">-&gt;</span>Convolve(<span class="o">/</span>Lorentzian, $
-<span class="linenos">35</span>                                 FWHM<span class="o">=</span>20D, $
-<span class="linenos">36</span>                                 XRange<span class="o">=</span>1D4<span class="o">/</span>[20D, 3D])
+<span class="linenos">34</span>spectrum<span class="w"> </span><span class="o">=</span><span class="w"> </span>transitions<span class="o">-&gt;</span>Convolve(<span class="o">/</span>Lorentzian,<span class="w"> </span>$
+<span class="linenos">35</span><span class="w">                                 </span>FWHM<span class="o">=</span>20D,<span class="w"> </span>$
+<span class="linenos">36</span><span class="w">                                 </span>XRange<span class="o">=</span>1D4<span class="o">/</span>[20D,<span class="w"> </span>3D])
 <span class="linenos">37</span>
-<span class="linenos">38</span>coadded <span class="o">=</span> spectrum<span class="o">-&gt;</span>CoAdd(Weights<span class="o">=</span>fit<span class="o">-&gt;</span>getWeights())
+<span class="linenos">38</span>coadded<span class="w"> </span><span class="o">=</span><span class="w"> </span>spectrum<span class="o">-&gt;</span>CoAdd(Weights<span class="o">=</span>fit<span class="o">-&gt;</span>getWeights())
 <span class="linenos">39</span>
 <span class="linenos">40</span>coadded<span class="o">-&gt;</span><span class="nb">Plot</span>
 <span class="linenos">41</span>
-<span class="linenos">42</span><span class="nb">OBJ_DESTROY</span>,[coadded, spectrum, fit, transitions, pahdb, observation]
+<span class="linenos">42</span><span class="nb">OBJ_DESTROY</span>,[coadded,<span class="w"> </span>spectrum,<span class="w"> </span>fit,<span class="w"> </span>transitions,<span class="w"> </span>pahdb,<span class="w"> </span>observation]
 </pre></div>
 </div>
 </div><div aria-labelledby="tab-0-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-0-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span> <span class="kn">import</span> <span class="nn">csv</span>
@@ -266,86 +251,109 @@ observational grid.</p>
 </div></blockquote>
 <p>Below some examples of the generated output.</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-SURM" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-2-SURM" name="SURM" role="tab" tabindex="0">IDL</button><button aria-controls="panel-2-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-2-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-2-SURM" class="sphinx-tabs-panel group-tab" id="panel-2-SURM" name="SURM" role="tabpanel" tabindex="0"><div class="figure align-center" id="id1">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-SURM" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-2-SURM" name="SURM" role="tab" tabindex="0">IDL</button><button aria-controls="panel-2-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-2-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-2-SURM" class="sphinx-tabs-panel group-tab" id="panel-2-SURM" name="SURM" role="tabpanel" tabindex="0"><figure class="align-center" id="id1">
 <img alt="_images/1.png" src="_images/1.png" />
-<p class="caption"><span class="caption-text">Result of a PAHdb-fit to the 10-15 micron spectrum of NGC
-7023 showing the contribution from different PAHs.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
-</div>
-</div><div aria-labelledby="tab-2-UHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-2-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="figure align-center" id="id2">
+<figcaption>
+<p><span class="caption-text">Result of a PAHdb-fit to the 10-15 micron spectrum of NGC
+7023 showing the contribution from different PAHs.</span><a class="headerlink" href="#id1" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+</div><div aria-labelledby="tab-2-UHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-2-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><figure class="align-center" id="id2">
 <img alt="_images/11.png" src="_images/11.png" />
-<p class="caption"><span class="caption-text">Result of a PAHdb-fit to the 10-15 micron spectrum of NGC
-7023 showing the contribution from different PAHs.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text">Result of a PAHdb-fit to the 10-15 micron spectrum of NGC
+7023 showing the contribution from different PAHs.</span><a class="headerlink" href="#id2" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
 </div></div>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-3-SURM" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-3-SURM" name="SURM" role="tab" tabindex="0">IDL</button><button aria-controls="panel-3-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-3-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-3-SURM" class="sphinx-tabs-panel group-tab" id="panel-3-SURM" name="SURM" role="tabpanel" tabindex="0"><div class="figure align-center" id="id3">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-3-SURM" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-3-SURM" name="SURM" role="tab" tabindex="0">IDL</button><button aria-controls="panel-3-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-3-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-3-SURM" class="sphinx-tabs-panel group-tab" id="panel-3-SURM" name="SURM" role="tabpanel" tabindex="0"><figure class="align-center" id="id3">
 <img alt="_images/2.png" src="_images/2.png" />
-<p class="caption"><span class="caption-text">Top: Result of a PAHdb-fit to the 10-15 micron spectrum of
+<figcaption>
+<p><span class="caption-text">Top: Result of a PAHdb-fit to the 10-15 micron spectrum of
 NGC 7023 showing the contribution from different
-PAHs. Bottom: Residual of the fit.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
-</div>
-</div><div aria-labelledby="tab-3-UHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-3-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="figure align-center" id="id4">
+PAHs. Bottom: Residual of the fit.</span><a class="headerlink" href="#id3" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+</div><div aria-labelledby="tab-3-UHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-3-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><figure class="align-center" id="id4">
 <img alt="_images/21.png" src="_images/21.png" />
-<p class="caption"><span class="caption-text">Top: Result of a PAHdb-fit to the 10-15 micron spectrum of
+<figcaption>
+<p><span class="caption-text">Top: Result of a PAHdb-fit to the 10-15 micron spectrum of
 NGC 7023 showing the contribution from different
-PAHs. Bottom: Residual of the fit.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
-</div>
+PAHs. Bottom: Residual of the fit.</span><a class="headerlink" href="#id4" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
 </div></div>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-4-SURM" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-4-SURM" name="SURM" role="tab" tabindex="0">IDL</button><button aria-controls="panel-4-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-4-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-4-SURM" class="sphinx-tabs-panel group-tab" id="panel-4-SURM" name="SURM" role="tabpanel" tabindex="0"><div class="figure align-center" id="id5">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-4-SURM" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-4-SURM" name="SURM" role="tab" tabindex="0">IDL</button><button aria-controls="panel-4-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-4-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-4-SURM" class="sphinx-tabs-panel group-tab" id="panel-4-SURM" name="SURM" role="tabpanel" tabindex="0"><figure class="align-center" id="id5">
 <img alt="_images/3.png" src="_images/3.png" />
-<p class="caption"><span class="caption-text">Result of a PAHdb-fit to the 10-15 micron spectrum of NGC
-7023 showing the contribution from large and small PAHs.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
-</div>
-</div><div aria-labelledby="tab-4-UHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-4-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="figure align-center" id="id6">
+<figcaption>
+<p><span class="caption-text">Result of a PAHdb-fit to the 10-15 micron spectrum of NGC
+7023 showing the contribution from large and small PAHs.</span><a class="headerlink" href="#id5" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+</div><div aria-labelledby="tab-4-UHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-4-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><figure class="align-center" id="id6">
 <img alt="_images/31.png" src="_images/31.png" />
-<p class="caption"><span class="caption-text">Result of a PAHdb-fit to the 10-15 micron spectrum of NGC
-7023 showing the contribution from large and small PAHs.</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text">Result of a PAHdb-fit to the 10-15 micron spectrum of NGC
+7023 showing the contribution from large and small PAHs.</span><a class="headerlink" href="#id6" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
 </div></div>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-5-SURM" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-5-SURM" name="SURM" role="tab" tabindex="0">IDL</button><button aria-controls="panel-5-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-5-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-5-SURM" class="sphinx-tabs-panel group-tab" id="panel-5-SURM" name="SURM" role="tabpanel" tabindex="0"><div class="figure align-center" id="id7">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-5-SURM" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-5-SURM" name="SURM" role="tab" tabindex="0">IDL</button><button aria-controls="panel-5-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-5-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-5-SURM" class="sphinx-tabs-panel group-tab" id="panel-5-SURM" name="SURM" role="tabpanel" tabindex="0"><figure class="align-center" id="id7">
 <img alt="_images/4.png" src="_images/4.png" />
-<p class="caption"><span class="caption-text">Result of a PAHdb-fit to the 10-15 micron spectrum of NGC
+<figcaption>
+<p><span class="caption-text">Result of a PAHdb-fit to the 10-15 micron spectrum of NGC
 7023 showing the contribution from PAH anions, neutrals and
-cation.</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
-</div>
-</div><div aria-labelledby="tab-5-UHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-5-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="figure align-center" id="id8">
+cation.</span><a class="headerlink" href="#id7" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+</div><div aria-labelledby="tab-5-UHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-5-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><figure class="align-center" id="id8">
 <img alt="_images/41.png" src="_images/41.png" />
-<p class="caption"><span class="caption-text">Result of a PAHdb-fit to the 10-15 micron spectrum of NGC
+<figcaption>
+<p><span class="caption-text">Result of a PAHdb-fit to the 10-15 micron spectrum of NGC
 7023 showing the contribution from PAH anions, neutrals and
-cation.</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
-</div>
+cation.</span><a class="headerlink" href="#id8" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
 </div></div>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-6-SURM" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-6-SURM" name="SURM" role="tab" tabindex="0">IDL</button><button aria-controls="panel-6-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-6-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-6-SURM" class="sphinx-tabs-panel group-tab" id="panel-6-SURM" name="SURM" role="tabpanel" tabindex="0"><div class="figure align-center" id="id9">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-6-SURM" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-6-SURM" name="SURM" role="tab" tabindex="0">IDL</button><button aria-controls="panel-6-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-6-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-6-SURM" class="sphinx-tabs-panel group-tab" id="panel-6-SURM" name="SURM" role="tabpanel" tabindex="0"><figure class="align-center" id="id9">
 <img alt="_images/5.png" src="_images/5.png" />
-<p class="caption"><span class="caption-text">Result of a PAHdb-fit to the 10-15 micron spectrum of NGC
+<figcaption>
+<p><span class="caption-text">Result of a PAHdb-fit to the 10-15 micron spectrum of NGC
 7023 showing the contribution from ‘pure’ and nitrogen
-containing PAHs (PANHs).</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
-</div>
-</div><div aria-labelledby="tab-6-UHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-6-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="figure align-center" id="id10">
+containing PAHs (PANHs).</span><a class="headerlink" href="#id9" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+</div><div aria-labelledby="tab-6-UHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-6-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><figure class="align-center" id="id10">
 <img alt="_images/51.png" src="_images/51.png" />
-<p class="caption"><span class="caption-text">Result of a PAHdb-fit to the 10-15 micron spectrum of NGC
+<figcaption>
+<p><span class="caption-text">Result of a PAHdb-fit to the 10-15 micron spectrum of NGC
 7023 showing the contribution from ‘pure’ and nitrogen
-containing PAHs (PANHs).</span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
-</div>
+containing PAHs (PANHs).</span><a class="headerlink" href="#id10" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
 </div></div>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-7-SURM" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-7-SURM" name="SURM" role="tab" tabindex="0">IDL</button></div><div aria-labelledby="tab-7-SURM" class="sphinx-tabs-panel group-tab" id="panel-7-SURM" name="SURM" role="tabpanel" tabindex="0"><div class="figure align-center" id="id11">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-7-SURM" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-7-SURM" name="SURM" role="tab" tabindex="0">IDL</button></div><div aria-labelledby="tab-7-SURM" class="sphinx-tabs-panel group-tab" id="panel-7-SURM" name="SURM" role="tabpanel" tabindex="0"><figure class="align-center" id="id11">
 <img alt="_images/6.png" src="_images/6.png" />
-<p class="caption"><span class="caption-text">Predicted 4000-0 cm<sup>-1</sup> spectrum of NGC 7023 based
+<figcaption>
+<p><span class="caption-text">Predicted 4000-0 cm<sup>-1</sup> spectrum of NGC 7023 based
 on a PAHdb-fit to its 10-15 micron region showing the
-contribution from ‘pure’.</span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
-</div>
+contribution from ‘pure’.</span><a class="headerlink" href="#id11" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
 </div></div>
-</div>
+</section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="sec_02.html" class="btn btn-neutral float-left" title="Recipes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="sec_02-stellar_kurucz_model.html" class="btn btn-neutral float-right" title="Stellar Kurucz Model" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

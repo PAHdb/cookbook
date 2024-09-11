@@ -1,22 +1,24 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Accessing data &mdash; PAHdb cookbook  documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/tabs.css?v=a5c4661c" />
+
+  
     <link rel="shortcut icon" href="_static/touch-icon-310x310.png"/>
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/tabs.js"></script>
+        <script src="_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="_static/tabs.js?v=3030b3cb"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -30,11 +32,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> PAHdb cookbook
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            PAHdb cookbook
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -58,6 +64,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="sec_02.html">Recipes</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="sec_02-fit_a_spectrum.html">Fit a spectrum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sec_02-stellar_kurucz_model.html">Stellar Kurucz Model</a></li>
 </ul>
 </li>
 </ul>
@@ -75,9 +82,9 @@
         <div class="rst-content style-external-links">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="sec_01.html">API Overview</a> &raquo;</li>
-      <li>Accessing data</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="sec_01.html">API Overview</a></li>
+      <li class="breadcrumb-item active">Accessing data</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
@@ -89,39 +96,15 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  
-<style>
-/* CSS overrides for sphinx_rtd_theme */
-
-/* 24px margin */
-.nbinput.nblast.container,
-.nboutput.nblast.container {
-    margin-bottom: 19px;  /* padding has already 5px */
-}
-
-/* ... except between code cells! */
-.nblast.container + .nbinput.container {
-    margin-top: -19px;
-}
-
-.admonition > p:before {
-    margin-right: 4px;  /* make room for the exclamation icon */
-}
-
-/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
-.math {
-    text-align: unset;
-}
-</style>
-<div class="section" id="accessing-data">
-<h1>Accessing data<a class="headerlink" href="#accessing-data" title="Permalink to this headline">¶</a></h1>
+  <section id="accessing-data">
+<h1>Accessing data<a class="headerlink" href="#accessing-data" title="Link to this heading">¶</a></h1>
 <p>The molecular PAH data is accessed through their associated unique
 identifiers (UIDs). However, a search-interface is available that
 allows retrieval of these UIDs through simplified queries. The syntax
 is identical to that used on the NASA Ames PAH IR Spectroscopic
 Database website.</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-SURM" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-0-SURM" name="SURM" role="tab" tabindex="0">IDL</button><button aria-controls="panel-0-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-0-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-0-SURM" class="sphinx-tabs-panel code-tab group-tab" id="panel-0-SURM" name="SURM" role="tabpanel" tabindex="0"><div class="highlight-idl notranslate"><div class="highlight"><pre><span></span>uids <span class="o">=</span> pahdb<span class="o">-&gt;</span>Search(<span class="s2">&quot;c&lt;=20 neutral n=2 neutral&quot;</span>)
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-SURM" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-0-SURM" name="SURM" role="tab" tabindex="0">IDL</button><button aria-controls="panel-0-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-0-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-0-SURM" class="sphinx-tabs-panel code-tab group-tab" id="panel-0-SURM" name="SURM" role="tabpanel" tabindex="0"><div class="highlight-idl notranslate"><div class="highlight"><pre><span></span>uids<span class="w"> </span><span class="o">=</span><span class="w"> </span>pahdb<span class="o">-&gt;</span>Search(<span class="s2">&quot;c&lt;=20 neutral n=2 neutral&quot;</span>)
 </pre></div>
 </div>
 </div><div aria-labelledby="tab-0-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-0-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">uids</span> <span class="o">=</span> <span class="n">pahdb</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;c&lt;=20 neutral n=2 neutral&quot;</span><span class="p">)</span>
@@ -139,25 +122,25 @@ total energy, etc.</p></li>
 </ol>
 <p>The following illustrates how to access these components.</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-SURM" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-1-SURM" name="SURM" role="tab" tabindex="0">IDL</button><button aria-controls="panel-1-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-1-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-1-SURM" class="sphinx-tabs-panel code-tab group-tab" id="panel-1-SURM" name="SURM" role="tabpanel" tabindex="0"><div class="highlight-idl notranslate"><div class="highlight"><pre><span></span>pahdb <span class="o">=</span> <span class="nb">OBJ_NEW</span>(<span class="s1">&#39;AmesPAHdbIDLSuite&#39;</span>)
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-SURM" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-1-SURM" name="SURM" role="tab" tabindex="0">IDL</button><button aria-controls="panel-1-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-1-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-1-SURM" class="sphinx-tabs-panel code-tab group-tab" id="panel-1-SURM" name="SURM" role="tabpanel" tabindex="0"><div class="highlight-idl notranslate"><div class="highlight"><pre><span></span>pahdb<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">OBJ_NEW</span>(<span class="s1">&#39;AmesPAHdbIDLSuite&#39;</span>)
 
-uids <span class="o">=</span> pahdb<span class="o">-&gt;</span>Search(<span class="s2">&quot;c&lt;=20 neutral n=2 neutral&quot;</span>)
+uids<span class="w"> </span><span class="o">=</span><span class="w"> </span>pahdb<span class="o">-&gt;</span>Search(<span class="s2">&quot;c&lt;=20 neutral n=2 neutral&quot;</span>)
 
-pahs <span class="o">=</span> pahdb<span class="o">-&gt;</span>getSpeciesByUID(uids)
+pahs<span class="w"> </span><span class="o">=</span><span class="w"> </span>pahdb<span class="o">-&gt;</span>getSpeciesByUID(uids)
 
-transitions <span class="o">=</span> pahdb<span class="o">-&gt;</span>getTransitionsByUID(uids)
+transitions<span class="w"> </span><span class="o">=</span><span class="w"> </span>pahdb<span class="o">-&gt;</span>getTransitionsByUID(uids)
 
-geometries <span class="o">=</span> pahdb<span class="o">-&gt;</span>getGeometryByUID(uids)
+geometries<span class="w"> </span><span class="o">=</span><span class="w"> </span>pahdb<span class="o">-&gt;</span>getGeometryByUID(uids)
 
-laboratory <span class="o">=</span> pahdb<span class="o">-&gt;</span>getLaboratoryByUID(uids)
+laboratory<span class="w"> </span><span class="o">=</span><span class="w"> </span>pahdb<span class="o">-&gt;</span>getLaboratoryByUID(uids)
 
 <span class="c1">;; work ...</span>
 
-<span class="nb">OBJ_DESTROY</span>,[laboratory, $
-             geometries, $
-             transitions, $
-             pahs, $
-             pahdb]
+<span class="nb">OBJ_DESTROY</span>,[laboratory,<span class="w"> </span>$
+<span class="w">             </span>geometries,<span class="w"> </span>$
+<span class="w">             </span>transitions,<span class="w"> </span>$
+<span class="w">             </span>pahs,<span class="w"> </span>$
+<span class="w">             </span>pahdb]
 </pre></div>
 </div>
 </div><div aria-labelledby="tab-1-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-1-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pahdb</span> <span class="o">=</span> <span class="n">Amespahdbpythonsuite</span><span class="p">()</span>
@@ -179,24 +162,24 @@ laboratory <span class="o">=</span> pahdb<span class="o">-&gt;</span>getLaborato
 <p>Alternatively, one can access these components through the
 ‘species’-instance.</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-SURM" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-2-SURM" name="SURM" role="tab" tabindex="0">IDL</button><button aria-controls="panel-2-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-2-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-2-SURM" class="sphinx-tabs-panel code-tab group-tab" id="panel-2-SURM" name="SURM" role="tabpanel" tabindex="0"><div class="highlight-idl notranslate"><div class="highlight"><pre><span></span>pahdb <span class="o">=</span> <span class="nb">OBJ_NEW</span>(<span class="s1">&#39;AmesPAHdbIDLSuite&#39;</span>)
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-SURM" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-2-SURM" name="SURM" role="tab" tabindex="0">IDL</button><button aria-controls="panel-2-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-2-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-2-SURM" class="sphinx-tabs-panel code-tab group-tab" id="panel-2-SURM" name="SURM" role="tabpanel" tabindex="0"><div class="highlight-idl notranslate"><div class="highlight"><pre><span></span>pahdb<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">OBJ_NEW</span>(<span class="s1">&#39;AmesPAHdbIDLSuite&#39;</span>)
 
-pahs <span class="o">=</span> pahdb<span class="o">-&gt;</span>getSpeciesByUID( $
-       pahdb<span class="o">-&gt;</span>Search(<span class="s2">&quot;c&lt;=20 neutral n=2 neutral&quot;</span>))
+pahs<span class="w"> </span><span class="o">=</span><span class="w"> </span>pahdb<span class="o">-&gt;</span>getSpeciesByUID(<span class="w"> </span>$
+<span class="w">       </span>pahdb<span class="o">-&gt;</span>Search(<span class="s2">&quot;c&lt;=20 neutral n=2 neutral&quot;</span>))
 
-transitions <span class="o">=</span> pahs<span class="o">-&gt;</span>transitions()
+transitions<span class="w"> </span><span class="o">=</span><span class="w"> </span>pahs<span class="o">-&gt;</span>transitions()
 
-geometries <span class="o">=</span> pahs<span class="o">-&gt;</span>geometry()
+geometries<span class="w"> </span><span class="o">=</span><span class="w"> </span>pahs<span class="o">-&gt;</span>geometry()
 
-laboratory <span class="o">=</span> pahs<span class="o">-&gt;</span>laboratory()
+laboratory<span class="w"> </span><span class="o">=</span><span class="w"> </span>pahs<span class="o">-&gt;</span>laboratory()
 
 <span class="c1">;; work ...</span>
 
-<span class="nb">OBJ_DESTROY</span>,[laboratory, $
-             geometries, $
-             transitions, $
-             pahs, $
-             pahdb]
+<span class="nb">OBJ_DESTROY</span>,[laboratory,<span class="w"> </span>$
+<span class="w">             </span>geometries,<span class="w"> </span>$
+<span class="w">             </span>transitions,<span class="w"> </span>$
+<span class="w">             </span>pahs,<span class="w"> </span>$
+<span class="w">             </span>pahdb]
 </pre></div>
 </div>
 </div><div aria-labelledby="tab-2-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-2-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pahdb</span> <span class="o">=</span> <span class="n">Amespahdbpythonsuite</span><span class="p">()</span>
@@ -214,7 +197,7 @@ laboratory <span class="o">=</span> pahs<span class="o">-&gt;</span>laboratory()
 </pre></div>
 </div>
 </div></div>
-</div>
+</section>
 
 
            </div>

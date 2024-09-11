@@ -1,22 +1,24 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Working with fitted data &mdash; PAHdb cookbook  documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/tabs.css?v=a5c4661c" />
+
+  
     <link rel="shortcut icon" href="_static/touch-icon-310x310.png"/>
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/tabs.js"></script>
+        <script src="_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="_static/tabs.js?v=3030b3cb"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -30,11 +32,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> PAHdb cookbook
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            PAHdb cookbook
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -58,6 +64,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="sec_02.html">Recipes</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="sec_02-fit_a_spectrum.html">Fit a spectrum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sec_02-stellar_kurucz_model.html">Stellar Kurucz Model</a></li>
 </ul>
 </li>
 </ul>
@@ -75,9 +82,9 @@
         <div class="rst-content style-external-links">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="sec_01.html">API Overview</a> &raquo;</li>
-      <li>Working with fitted data</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="sec_01.html">API Overview</a></li>
+      <li class="breadcrumb-item active">Working with fitted data</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
@@ -89,32 +96,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  
-<style>
-/* CSS overrides for sphinx_rtd_theme */
-
-/* 24px margin */
-.nbinput.nblast.container,
-.nboutput.nblast.container {
-    margin-bottom: 19px;  /* padding has already 5px */
-}
-
-/* ... except between code cells! */
-.nblast.container + .nbinput.container {
-    margin-top: -19px;
-}
-
-.admonition > p:before {
-    margin-right: 4px;  /* make room for the exclamation icon */
-}
-
-/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
-.math {
-    text-align: unset;
-}
-</style>
-<div class="section" id="working-with-fitted-data">
-<h1>Working with fitted data<a class="headerlink" href="#working-with-fitted-data" title="Permalink to this headline">¶</a></h1>
+  <section id="working-with-fitted-data">
+<h1>Working with fitted data<a class="headerlink" href="#working-with-fitted-data" title="Link to this heading">¶</a></h1>
 <p>The ‘fit’-instance exposes the fit and provides the ‘Plot’, and
 ‘Write’-methods for output. The ‘Plot’-method accepts the ‘Residual’,
 ‘Size’, ‘Charge’, and ‘Composition’-keywords, which selectively
@@ -157,9 +140,9 @@ the fit broken down by charge, size, and composition, where the first
 provides the spectrum for each component and the latter its relative
 contribution.</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-3-SURM" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-3-SURM" name="SURM" role="tab" tabindex="0">IDL</button><button aria-controls="panel-3-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-3-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-3-SURM" class="sphinx-tabs-panel code-tab group-tab" id="panel-3-SURM" name="SURM" role="tabpanel" tabindex="0"><div class="highlight-idl notranslate"><div class="highlight"><pre><span></span>classes <span class="o">=</span> fit<span class="o">-&gt;</span>getClasses()
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-3-SURM" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-3-SURM" name="SURM" role="tab" tabindex="0">IDL</button><button aria-controls="panel-3-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-3-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-3-SURM" class="sphinx-tabs-panel code-tab group-tab" id="panel-3-SURM" name="SURM" role="tabpanel" tabindex="0"><div class="highlight-idl notranslate"><div class="highlight"><pre><span></span>classes<span class="w"> </span><span class="o">=</span><span class="w"> </span>fit<span class="o">-&gt;</span>getClasses()
 
-breakdown <span class="o">=</span> fit<span class="o">-&gt;</span>getBreakdown()
+breakdown<span class="w"> </span><span class="o">=</span><span class="w"> </span>fit<span class="o">-&gt;</span>getBreakdown()
 </pre></div>
 </div>
 </div><div aria-labelledby="tab-3-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-3-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">classes</span> <span class="o">=</span> <span class="n">fit</span><span class="o">.</span><span class="n">getclasses</span><span class="p">()</span>
@@ -171,7 +154,7 @@ breakdown <span class="o">=</span> fit<span class="o">-&gt;</span>getBreakdown()
 <p>Optionally the ‘Small’ keyword can be set, which controls the small
 cutoff size in number of carbon atoms.</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-4-SURM" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-4-SURM" name="SURM" role="tab" tabindex="0">IDL</button><button aria-controls="panel-4-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-4-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-4-SURM" class="sphinx-tabs-panel code-tab group-tab" id="panel-4-SURM" name="SURM" role="tabpanel" tabindex="0"><div class="highlight-idl notranslate"><div class="highlight"><pre><span></span>classes <span class="o">=</span> fit<span class="o">-&gt;</span>getClasses(Small<span class="o">=</span><span class="il">20L</span>)
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-4-SURM" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-4-SURM" name="SURM" role="tab" tabindex="0">IDL</button><button aria-controls="panel-4-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-4-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-4-SURM" class="sphinx-tabs-panel code-tab group-tab" id="panel-4-SURM" name="SURM" role="tabpanel" tabindex="0"><div class="highlight-idl notranslate"><div class="highlight"><pre><span></span>classes<span class="w"> </span><span class="o">=</span><span class="w"> </span>fit<span class="o">-&gt;</span>getClasses(Small<span class="o">=</span><span class="il">20L</span>)
 </pre></div>
 </div>
 </div><div aria-labelledby="tab-4-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-4-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">classes</span> <span class="o">=</span> <span class="n">fit</span><span class="o">.</span><span class="n">getclasses</span><span class="p">(</span><span class="n">small</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
@@ -182,14 +165,14 @@ cutoff size in number of carbon atoms.</p>
 controls whether the relative breakdown should be reported based on
 fitted weight or integrated flux.</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-5-SURM" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-5-SURM" name="SURM" role="tab" tabindex="0">IDL</button><button aria-controls="panel-5-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-5-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-5-SURM" class="sphinx-tabs-panel code-tab group-tab" id="panel-5-SURM" name="SURM" role="tabpanel" tabindex="0"><div class="highlight-idl notranslate"><div class="highlight"><pre><span></span>breakdown <span class="o">=</span> fit<span class="o">-&gt;</span>getBreakdown(<span class="o">/</span>Flux)
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-5-SURM" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-5-SURM" name="SURM" role="tab" tabindex="0">IDL</button><button aria-controls="panel-5-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-5-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-5-SURM" class="sphinx-tabs-panel code-tab group-tab" id="panel-5-SURM" name="SURM" role="tabpanel" tabindex="0"><div class="highlight-idl notranslate"><div class="highlight"><pre><span></span>breakdown<span class="w"> </span><span class="o">=</span><span class="w"> </span>fit<span class="o">-&gt;</span>getBreakdown(<span class="o">/</span>Flux)
 </pre></div>
 </div>
 </div><div aria-labelledby="tab-5-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-5-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">breakdown</span> <span class="o">=</span> <span class="n">fit</span><span class="o">.</span><span class="n">getbreakdown</span><span class="p">(</span><span class="n">flux</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div></div>
-</div>
+</section>
 
 
            </div>

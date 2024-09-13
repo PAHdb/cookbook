@@ -60,46 +60,55 @@ detailed, line-by-line, explanation of the code.
     .. code-tab:: python
         :linenos:
 
-	 import csv
-         import amespahdbpythonsuite
+        import importlib_resources
+        import numpy as np
 
+        from amespahdbpythonsuite import observation
+        from amespahdbpythonsuite.amespahdb import AmesPAHdb
 
-         observation = []
-         with open('myFile', 'rb') as f:
-             reader = csv.reader(f, delimiter=' ', skipinitialspace=True)
-             for col in zip(*reader):
-                 observation.append([float(x) for x in col])
+        file_path = importlib_resources.files("amespahdbpythonsuite")
+        data_file = file_path / "resources/galaxy_spec.ipac"
+        obs = observation.Observation(data_file)
 
-         observation[0] = [1e4/x for x in observation[0]]
+        obs.abscissaunitsto("1/cm")
 
-         pahdb = amespahdbpythonsuite()
+        xml_file = file_path / "resources/pahdb-theoretical_cutdown.xml"
+        pahdb = AmesPAHdb(
+            filename=xml_file,
+            check=False,
+            cache=False,
+        )
 
-         transitions = pahdb.gettransitionsbyuid( \
-                       pahdb.search("magnesium=0 oxygen=0 iron=0 silicium=0 chx=0 ch2=0 c>20"))
+        uids = pahdb.search("c>0")
+        transitions = pahdb.gettransitionsbyuid(uids)
 
-         transitions.fixedtemperature(600.0)
+        transitions.cascade(6 * 1.603e-12, multiprocessing=False)
 
-         transitions.shift(-15.0)
+        transitions.shift(-15.0)
 
-         spectrum = transitions.convolve(grid=observation[0], \
-                                         fwhm=15.0,
-                                         gaussian=True)
+        spectrum = transitions.convolve(
+            grid=obs.getgrid(), fwhm=20.0, gaussian=True, multiprocessing=False
+        )
 
-         intensity = \
-	   [observation[1][i] - observation[2][i] for i in range(0, len(observation[0]))])
+        fit = spectrum.fit(obs)
 
-         fit = spectrum.fit(intensity)
+        fit.plot(wavelength=True)
+        fit.plot(wavelength=True, residual=True)
+        fit.plot(wavelength=True, size=True)
+        fit.plot(wavelength=True, charge=True)
+        fit.plot(wavelength=True, composition=True)
 
-         fit.plot(wavelength=True)
+        transitions.intersect(fit.getuids())
 
-         fit.plot(wavelength=True, residual=True)
+        xrange = 1e4 / np.array([20.0, 3.0])
 
-         fit.plot(wavelength=True, size=True)
+        spectrum = transitions.convolve(
+            xrange=xrange, fwhm=20.0, gaussian=True, multiprocessing=False
+        )
 
-         fit.plot(wavelength=True, charge=True)
+        coadded = spectrum.coadd(weights=fit.getweights())
 
-         fit.plot(wavelength=True, composition=True)
-
+        coadded.plot()
 
 A line-by-line explanation of the code follows.
 
@@ -138,15 +147,14 @@ A line-by-line explanation of the code follows.
 
         line 23: Cleanup of 'spectrum'.
 
-        line 25-29: Display several aspects of the fit.
+        lines 25-29: Display several aspects of the fit.
 
         line 31: The transitions are intersected with the PAH species
         in the fit.
 
-        line 34: The fundamental vibrational transitions are again
-        convolved with Lorentzian profiles having a
-        full-width-at-half-maximum of 20\ :sup:`-1`, but now onto a
-        generated grid from 3-10 micron.
+        line 34: The fundamental vibrational transitions are again convolved
+        with Lorentzian profiles having a full-width-at-half-maximum of 20 cm\
+        :sup:`-1`, but now onto a generated grid from 3-20 micron.
 
         line 38: The individual PAH spectra are added using weights
         retrieved from the fit.
@@ -161,37 +169,43 @@ A line-by-line explanation of the code follows.
 
     .. group-tab:: Python
 
-        lines 1-2: Importing the necessary modules.
+        lines 1-5: Importing the necessary modules.
 
-	lines 5-9: Read astronomical observation from 'myFile' in
-	CSV-format.
+        lines 7-9: A spectrum included with the suite is loaded.
 
         line 11: Observation abscissa units are converted to
         wavenumber.
 
-        line 13: The default NASA Ames PAH IR Spectroscopic Database
-        XML-file is loaded.
+        lines 13-18: The cutdown version of the database XML-file included with the suite is loaded.
 
-        line 15-16: The fundamental vibrational transitions from a subset
-        of PAHs are retrieved.
+        lines 20-21: The fundamental vibrational transitions of PAHs are retrieved.
 
-        line 18: A FixedTemperature emission model at 600 Kelvin is
-        applied.
+        line 23: A full temperature cascade emission model at 6 eV is applied.
 
-        line 20: The fundamental vibrational transitions are
-        redshifted 15 cm\ :sup:`-1`.
+        line 25: The fundamental vibrational transitions are redshifted 15 cm\
+        :sup:`-1`.
 
-        lines 22-24: The fundamental vibrational transitions are
-        convolved with Lorentzian profiles having a
-        full-width-at-half-maximum of 15 cm\ :sup:`-1` onto the
-        observational grid.
+        line 27: The fundamental vibrational transitions are convolved with
+        Lorentzian profiles having a full-width-at-half-maximum of 20 cm\
+        :sup:`-1` onto the observational grid.
 
-	line 26-27: Subtract the continuum component.
+        line 31: The observation is fitted with the PAH emission spectra.
 
-        line 29 The observation is fitted with the PAH emission spectra.
+        lines 33-37: Display several aspects of the fit.
 
-        line 31-39: Display several aspects of the fit.
+        line 39: The transitions are intersected with the PAH species in the
+        fit.
 
+        line 41: Define a 3-20 micron grid in wavenumbers.
+
+        lines 43-45: The fundamental vibrational transitions are again
+        convolved with Lorentzian profiles having a full-width-at-half-maximum
+        of 20 cm\:sup:`-1`, but now onto the generated 3-20 micron grid.
+
+        line 47: The individual PAH spectra are added using weights retrieved
+        from the fit.
+
+        line 49: The coadded spectrum is displayed, revealing the entire 3-20 micron, predicted, PAH spectrum.
 
 Below some examples of the generated output.
 
@@ -308,3 +322,14 @@ Below some examples of the generated output.
            Predicted 4000-0 cm\ :sup:`-1` spectrum of NGC 7023 based
            on a PAHdb-fit to its 10-15 micron region showing the
            contribution from 'pure'.
+
+    .. group-tab:: Python
+
+        .. figure:: figures/Screenshots/Python/complete_example/6.png
+           :align: center
+
+           Result of a PAHdb-fit to the 10-15 micron spectrum of NGC
+           7023 showing the contribution from 'pure' and nitrogen
+           containing PAHs (PANHs).
+
+

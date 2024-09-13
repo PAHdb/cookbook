@@ -15,5 +15,6 @@ when comparing IDL and Python outputs.
    :maxdepth: 1
 
    sec_02-fit_a_spectrum
+   sec_02-mcfit_a_spectrum
    sec_02-stellar_kurucz_model
 

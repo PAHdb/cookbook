@@ -45,6 +45,14 @@ line-by-line, explanation of the code.
     .. code-tab:: python
         :linenos:
 
+        import importlib_resources
+        import numpy as np
+
+        from amespahdbpythonsuite.amespahdb import AmesPAHdb
+
+        from astropy.io import fits
+
+
         file_path = importlib_resources.files("amespahdbpythonsuite")
         xml_file = file_path / "resources/pahdb-theoretical_cutdown.xml"
         pahdb = AmesPAHdb(
@@ -120,27 +128,29 @@ A line-by-line explanation of the code follows.
 
     .. group-tab:: Python
 
-        lines 1-7: The cutdown version of the database XML-file included with
+        lines 1-6: Importing the necessary modules.
+
+        lines 9-15: The cutdown version of the database XML-file included with
         the suite is loaded.
 
-        line 9: Selecting UID 18 for coronene.
+        line 17: Selecting UID 18 for coronene.
 
-        line 11: Retrieving the fundamental vibrational transitions for coronene.
+        line 19: Retrieving the fundamental vibrational transitions for coronene.
 
-        line 13-21: Use astropy to load the Kurucz model from FITS file and
+        line 21-29: Use astropy to load the Kurucz model from FITS file and
         convert to expected units.
 
-        lines 32-30: A Cascade emission model is applied that takes the Kurucz
+        lines 31-37: A Cascade emission model is applied that takes the Kurucz
         model as input and convolves it with the entire spectrum.
 
-        line 32: The fundamental vibrational transitions are
+        line 39: The fundamental vibrational transitions are
         redshifted 15 cm\ :sup:`-1`.
 
-        line 34: The fundamental vibrational transitions are convolved
+        line 41: The fundamental vibrational transitions are convolved
         with Lorentzian profiles having a full-width-at-half-maximum
         of 15 cm\ :sup:`-1`.
 
-        line 36: Display the resulting spectrum.
+        line 43: Display the resulting spectrum.
 
 
 Below the generated output.

@@ -23,7 +23,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Stellar Kurucz Model" href="sec_02-stellar_kurucz_model.html" />
+    <link rel="next" title="Monte Carlo fit a spectrum" href="sec_02-mcfit_a_spectrum.html" />
     <link rel="prev" title="Recipes" href="sec_02.html" /> 
 </head>
 
@@ -64,6 +64,7 @@
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="sec_02.html">Recipes</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Fit a spectrum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sec_02-mcfit_a_spectrum.html">Monte Carlo fit a spectrum</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sec_02-stellar_kurucz_model.html">Stellar Kurucz Model</a></li>
 </ul>
 </li>
@@ -89,7 +90,7 @@
       </li>
   </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
         <a href="sec_02.html" class="btn btn-neutral float-left" title="Recipes" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="sec_02-stellar_kurucz_model.html" class="btn btn-neutral float-right" title="Stellar Kurucz Model" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="sec_02-mcfit_a_spectrum.html" class="btn btn-neutral float-right" title="Monte Carlo fit a spectrum" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
   </div>
   <hr/>
 </div>
@@ -147,45 +148,55 @@ detailed, line-by-line, explanation of the code.</p>
 <span class="linenos">42</span><span class="nb">OBJ_DESTROY</span>,[coadded,<span class="w"> </span>spectrum,<span class="w"> </span>fit,<span class="w"> </span>transitions,<span class="w"> </span>pahdb,<span class="w"> </span>observation]
 </pre></div>
 </div>
-</div><div aria-labelledby="tab-0-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-0-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span> <span class="kn">import</span> <span class="nn">csv</span>
-<span class="linenos"> 2</span> <span class="kn">import</span> <span class="nn">amespahdbpythonsuite</span>
+</div><div aria-labelledby="tab-0-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-0-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">importlib_resources</span>
+<span class="linenos"> 2</span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="linenos"> 3</span>
-<span class="linenos"> 4</span>
-<span class="linenos"> 5</span> <span class="n">observation</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="linenos"> 6</span> <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;myFile&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-<span class="linenos"> 7</span>     <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">skipinitialspace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="linenos"> 8</span>     <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">reader</span><span class="p">):</span>
-<span class="linenos"> 9</span>         <span class="n">observation</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">col</span><span class="p">])</span>
+<span class="linenos"> 4</span><span class="kn">from</span> <span class="nn">amespahdbpythonsuite</span> <span class="kn">import</span> <span class="n">observation</span>
+<span class="linenos"> 5</span><span class="kn">from</span> <span class="nn">amespahdbpythonsuite.amespahdb</span> <span class="kn">import</span> <span class="n">AmesPAHdb</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="n">file_path</span> <span class="o">=</span> <span class="n">importlib_resources</span><span class="o">.</span><span class="n">files</span><span class="p">(</span><span class="s2">&quot;amespahdbpythonsuite&quot;</span><span class="p">)</span>
+<span class="linenos"> 8</span><span class="n">data_file</span> <span class="o">=</span> <span class="n">file_path</span> <span class="o">/</span> <span class="s2">&quot;resources/galaxy_spec.ipac&quot;</span>
+<span class="linenos"> 9</span><span class="n">obs</span> <span class="o">=</span> <span class="n">observation</span><span class="o">.</span><span class="n">Observation</span><span class="p">(</span><span class="n">data_file</span><span class="p">)</span>
 <span class="linenos">10</span>
-<span class="linenos">11</span> <span class="n">observation</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1e4</span><span class="o">/</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">observation</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+<span class="linenos">11</span><span class="n">obs</span><span class="o">.</span><span class="n">abscissaunitsto</span><span class="p">(</span><span class="s2">&quot;1/cm&quot;</span><span class="p">)</span>
 <span class="linenos">12</span>
-<span class="linenos">13</span> <span class="n">pahdb</span> <span class="o">=</span> <span class="n">amespahdbpythonsuite</span><span class="p">()</span>
-<span class="linenos">14</span>
-<span class="linenos">15</span> <span class="n">transitions</span> <span class="o">=</span> <span class="n">pahdb</span><span class="o">.</span><span class="n">gettransitionsbyuid</span><span class="p">(</span> \
-<span class="linenos">16</span>               <span class="n">pahdb</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;magnesium=0 oxygen=0 iron=0 silicium=0 chx=0 ch2=0 c&gt;20&quot;</span><span class="p">))</span>
-<span class="linenos">17</span>
-<span class="linenos">18</span> <span class="n">transitions</span><span class="o">.</span><span class="n">fixedtemperature</span><span class="p">(</span><span class="mf">600.0</span><span class="p">)</span>
+<span class="linenos">13</span><span class="n">xml_file</span> <span class="o">=</span> <span class="n">file_path</span> <span class="o">/</span> <span class="s2">&quot;resources/pahdb-theoretical_cutdown.xml&quot;</span>
+<span class="linenos">14</span><span class="n">pahdb</span> <span class="o">=</span> <span class="n">AmesPAHdb</span><span class="p">(</span>
+<span class="linenos">15</span>    <span class="n">filename</span><span class="o">=</span><span class="n">xml_file</span><span class="p">,</span>
+<span class="linenos">16</span>    <span class="n">check</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="linenos">17</span>    <span class="n">cache</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="linenos">18</span><span class="p">)</span>
 <span class="linenos">19</span>
-<span class="linenos">20</span> <span class="n">transitions</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="o">-</span><span class="mf">15.0</span><span class="p">)</span>
-<span class="linenos">21</span>
-<span class="linenos">22</span> <span class="n">spectrum</span> <span class="o">=</span> <span class="n">transitions</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">grid</span><span class="o">=</span><span class="n">observation</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> \
-<span class="linenos">23</span>                                 <span class="n">fwhm</span><span class="o">=</span><span class="mf">15.0</span><span class="p">,</span>
-<span class="linenos">24</span>                                 <span class="n">gaussian</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="linenos">25</span>
-<span class="linenos">26</span> <span class="n">intensity</span> <span class="o">=</span> \
-<span class="linenos">27</span>   <span class="p">[</span><span class="n">observation</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">observation</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">observation</span><span class="p">[</span><span class="mi">0</span><span class="p">]))])</span>
-<span class="linenos">28</span>
-<span class="linenos">29</span> <span class="n">fit</span> <span class="o">=</span> <span class="n">spectrum</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">intensity</span><span class="p">)</span>
+<span class="linenos">20</span><span class="n">uids</span> <span class="o">=</span> <span class="n">pahdb</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;c&gt;0&quot;</span><span class="p">)</span>
+<span class="linenos">21</span><span class="n">transitions</span> <span class="o">=</span> <span class="n">pahdb</span><span class="o">.</span><span class="n">gettransitionsbyuid</span><span class="p">(</span><span class="n">uids</span><span class="p">)</span>
+<span class="linenos">22</span>
+<span class="linenos">23</span><span class="n">transitions</span><span class="o">.</span><span class="n">cascade</span><span class="p">(</span><span class="mi">6</span> <span class="o">*</span> <span class="mf">1.603e-12</span><span class="p">,</span> <span class="n">multiprocessing</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="linenos">24</span>
+<span class="linenos">25</span><span class="n">transitions</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="o">-</span><span class="mf">15.0</span><span class="p">)</span>
+<span class="linenos">26</span>
+<span class="linenos">27</span><span class="n">spectrum</span> <span class="o">=</span> <span class="n">transitions</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span>
+<span class="linenos">28</span>    <span class="n">grid</span><span class="o">=</span><span class="n">obs</span><span class="o">.</span><span class="n">getgrid</span><span class="p">(),</span> <span class="n">fwhm</span><span class="o">=</span><span class="mf">20.0</span><span class="p">,</span> <span class="n">gaussian</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">multiprocessing</span><span class="o">=</span><span class="kc">False</span>
+<span class="linenos">29</span><span class="p">)</span>
 <span class="linenos">30</span>
-<span class="linenos">31</span> <span class="n">fit</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">wavelength</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="linenos">31</span><span class="n">fit</span> <span class="o">=</span> <span class="n">spectrum</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">obs</span><span class="p">)</span>
 <span class="linenos">32</span>
-<span class="linenos">33</span> <span class="n">fit</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">wavelength</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">residual</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="linenos">34</span>
-<span class="linenos">35</span> <span class="n">fit</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">wavelength</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="linenos">36</span>
-<span class="linenos">37</span> <span class="n">fit</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">wavelength</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">charge</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="linenos">33</span><span class="n">fit</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">wavelength</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="linenos">34</span><span class="n">fit</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">wavelength</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">residual</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="linenos">35</span><span class="n">fit</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">wavelength</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="linenos">36</span><span class="n">fit</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">wavelength</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">charge</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="linenos">37</span><span class="n">fit</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">wavelength</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">composition</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="linenos">38</span>
-<span class="linenos">39</span> <span class="n">fit</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">wavelength</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">composition</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="linenos">39</span><span class="n">transitions</span><span class="o">.</span><span class="n">intersect</span><span class="p">(</span><span class="n">fit</span><span class="o">.</span><span class="n">getuids</span><span class="p">())</span>
+<span class="linenos">40</span>
+<span class="linenos">41</span><span class="n">xrange</span> <span class="o">=</span> <span class="mf">1e4</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">20.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">])</span>
+<span class="linenos">42</span>
+<span class="linenos">43</span><span class="n">spectrum</span> <span class="o">=</span> <span class="n">transitions</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span>
+<span class="linenos">44</span>    <span class="n">xrange</span><span class="o">=</span><span class="n">xrange</span><span class="p">,</span> <span class="n">fwhm</span><span class="o">=</span><span class="mf">20.0</span><span class="p">,</span> <span class="n">gaussian</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">multiprocessing</span><span class="o">=</span><span class="kc">False</span>
+<span class="linenos">45</span><span class="p">)</span>
+<span class="linenos">46</span>
+<span class="linenos">47</span><span class="n">coadded</span> <span class="o">=</span> <span class="n">spectrum</span><span class="o">.</span><span class="n">coadd</span><span class="p">(</span><span class="n">weights</span><span class="o">=</span><span class="n">fit</span><span class="o">.</span><span class="n">getweights</span><span class="p">())</span>
+<span class="linenos">48</span>
+<span class="linenos">49</span><span class="n">coadded</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
 </div></div>
@@ -213,13 +224,11 @@ of 20 cm<sup>-1</sup> onto the observational grid.</p>
 <p>line 21: The observation is fitted with the PAH emission
 spectra.</p>
 <p>line 23: Cleanup of ‘spectrum’.</p>
-<p>line 25-29: Display several aspects of the fit.</p>
+<p>lines 25-29: Display several aspects of the fit.</p>
 <p>line 31: The transitions are intersected with the PAH species
 in the fit.</p>
-<p>line 34: The fundamental vibrational transitions are again
-convolved with Lorentzian profiles having a
-full-width-at-half-maximum of 20<sup>-1</sup>, but now onto a
-generated grid from 3-10 micron.</p>
+<p>line 34: The fundamental vibrational transitions are again convolved
+with Lorentzian profiles having a full-width-at-half-maximum of 20 cm<sup>-1</sup>, but now onto a generated grid from 3-20 micron.</p>
 <p>line 38: The individual PAH spectra are added using weights
 retrieved from the fit.</p>
 <p>line 40: The coadded spectrum is displayed, revealing the
@@ -227,26 +236,27 @@ entire 3-20 micron, predicted, PAH spectrum.</p>
 <p>line 42: Cleanup.</p>
 <p>Line 25: A figure is displayed showing the fitted spectrum and
 its components, as shown below.</p>
-</div><div aria-labelledby="tab-1-UHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-1-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><p>lines 1-2: Importing the necessary modules.</p>
-<p>lines 5-9: Read astronomical observation from ‘myFile’ in
-CSV-format.</p>
+</div><div aria-labelledby="tab-1-UHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-1-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><p>lines 1-5: Importing the necessary modules.</p>
+<p>lines 7-9: A spectrum included with the suite is loaded.</p>
 <p>line 11: Observation abscissa units are converted to
 wavenumber.</p>
-<p>line 13: The default NASA Ames PAH IR Spectroscopic Database
-XML-file is loaded.</p>
-<p>line 15-16: The fundamental vibrational transitions from a subset
-of PAHs are retrieved.</p>
-<p>line 18: A FixedTemperature emission model at 600 Kelvin is
-applied.</p>
-<p>line 20: The fundamental vibrational transitions are
-redshifted 15 cm<sup>-1</sup>.</p>
-<p>lines 22-24: The fundamental vibrational transitions are
-convolved with Lorentzian profiles having a
-full-width-at-half-maximum of 15 cm<sup>-1</sup> onto the
-observational grid.</p>
-<p>line 26-27: Subtract the continuum component.</p>
-<p>line 29 The observation is fitted with the PAH emission spectra.</p>
-<p>line 31-39: Display several aspects of the fit.</p>
+<p>lines 13-18: The cutdown version of the database XML-file included with the suite is loaded.</p>
+<p>lines 20-21: The fundamental vibrational transitions of PAHs are retrieved.</p>
+<p>line 23: A full temperature cascade emission model at 6 eV is applied.</p>
+<p>line 25: The fundamental vibrational transitions are redshifted 15 cm<sup>-1</sup>.</p>
+<p>line 27: The fundamental vibrational transitions are convolved with
+Lorentzian profiles having a full-width-at-half-maximum of 20 cm<sup>-1</sup> onto the observational grid.</p>
+<p>line 31: The observation is fitted with the PAH emission spectra.</p>
+<p>lines 33-37: Display several aspects of the fit.</p>
+<p>line 39: The transitions are intersected with the PAH species in the
+fit.</p>
+<p>line 41: Define a 3-20 micron grid in wavenumbers.</p>
+<p>lines 43-45: The fundamental vibrational transitions are again
+convolved with Lorentzian profiles having a full-width-at-half-maximum
+of 20 cm:sup:<cite>-1</cite>, but now onto the generated 3-20 micron grid.</p>
+<p>line 47: The individual PAH spectra are added using weights retrieved
+from the fit.</p>
+<p>line 49: The coadded spectrum is displayed, revealing the entire 3-20 micron, predicted, PAH spectrum.</p>
 </div></div>
 </div></blockquote>
 <p>Below some examples of the generated output.</p>
@@ -337,12 +347,20 @@ containing PAHs (PANHs).</span><a class="headerlink" href="#id10" title="Link to
 </figure>
 </div></div>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-7-SURM" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-7-SURM" name="SURM" role="tab" tabindex="0">IDL</button></div><div aria-labelledby="tab-7-SURM" class="sphinx-tabs-panel group-tab" id="panel-7-SURM" name="SURM" role="tabpanel" tabindex="0"><figure class="align-center" id="id11">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-7-SURM" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-7-SURM" name="SURM" role="tab" tabindex="0">IDL</button><button aria-controls="panel-7-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-7-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-7-SURM" class="sphinx-tabs-panel group-tab" id="panel-7-SURM" name="SURM" role="tabpanel" tabindex="0"><figure class="align-center" id="id11">
 <img alt="_images/6.png" src="_images/6.png" />
 <figcaption>
 <p><span class="caption-text">Predicted 4000-0 cm<sup>-1</sup> spectrum of NGC 7023 based
 on a PAHdb-fit to its 10-15 micron region showing the
 contribution from ‘pure’.</span><a class="headerlink" href="#id11" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+</div><div aria-labelledby="tab-7-UHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-7-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><figure class="align-center" id="id12">
+<img alt="_images/61.png" src="_images/61.png" />
+<figcaption>
+<p><span class="caption-text">Result of a PAHdb-fit to the 10-15 micron spectrum of NGC
+7023 showing the contribution from ‘pure’ and nitrogen
+containing PAHs (PANHs).</span><a class="headerlink" href="#id12" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 </div></div>
@@ -353,7 +371,7 @@ contribution from ‘pure’.</span><a class="headerlink" href="#id11" title="Li
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="sec_02.html" class="btn btn-neutral float-left" title="Recipes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="sec_02-stellar_kurucz_model.html" class="btn btn-neutral float-right" title="Stellar Kurucz Model" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="sec_02-mcfit_a_spectrum.html" class="btn btn-neutral float-right" title="Monte Carlo fit a spectrum" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

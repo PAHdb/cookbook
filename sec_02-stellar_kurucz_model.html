@@ -23,7 +23,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Fit a spectrum" href="sec_02-fit_a_spectrum.html" /> 
+    <link rel="prev" title="Monte Carlo fit a spectrum" href="sec_02-mcfit_a_spectrum.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -63,6 +63,7 @@
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="sec_02.html">Recipes</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="sec_02-fit_a_spectrum.html">Fit a spectrum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sec_02-mcfit_a_spectrum.html">Monte Carlo fit a spectrum</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Stellar Kurucz Model</a></li>
 </ul>
 </li>
@@ -87,7 +88,7 @@
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
-        <a href="sec_02-fit_a_spectrum.html" class="btn btn-neutral float-left" title="Fit a spectrum" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="sec_02-mcfit_a_spectrum.html" class="btn btn-neutral float-left" title="Monte Carlo fit a spectrum" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
   </div>
   <hr/>
 </div>
@@ -130,41 +131,49 @@ line-by-line, explanation of the code.</p>
 <span class="linenos">27</span>!EXCEPT<span class="w"> </span><span class="o">=</span><span class="w"> </span>e
 </pre></div>
 </div>
-</div><div aria-labelledby="tab-0-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-0-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="n">file_path</span> <span class="o">=</span> <span class="n">importlib_resources</span><span class="o">.</span><span class="n">files</span><span class="p">(</span><span class="s2">&quot;amespahdbpythonsuite&quot;</span><span class="p">)</span>
-<span class="linenos"> 2</span><span class="n">xml_file</span> <span class="o">=</span> <span class="n">file_path</span> <span class="o">/</span> <span class="s2">&quot;resources/pahdb-theoretical_cutdown.xml&quot;</span>
-<span class="linenos"> 3</span><span class="n">pahdb</span> <span class="o">=</span> <span class="n">AmesPAHdb</span><span class="p">(</span>
-<span class="linenos"> 4</span>    <span class="n">filename</span><span class="o">=</span><span class="n">xml_file</span><span class="p">,</span>
-<span class="linenos"> 5</span>    <span class="n">check</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-<span class="linenos"> 6</span>    <span class="n">cache</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-<span class="linenos"> 7</span><span class="p">)</span>
+</div><div aria-labelledby="tab-0-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-0-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">importlib_resources</span>
+<span class="linenos"> 2</span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="kn">from</span> <span class="nn">amespahdbpythonsuite.amespahdb</span> <span class="kn">import</span> <span class="n">AmesPAHdb</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="kn">from</span> <span class="nn">astropy.io</span> <span class="kn">import</span> <span class="n">fits</span>
+<span class="linenos"> 7</span>
 <span class="linenos"> 8</span>
-<span class="linenos"> 9</span><span class="n">uid</span> <span class="o">=</span> <span class="mi">18</span>
-<span class="linenos">10</span>
-<span class="linenos">11</span><span class="n">transitions</span> <span class="o">=</span> <span class="n">pahdb</span><span class="o">.</span><span class="n">gettransitionsbyuid</span><span class="p">(</span><span class="n">uid</span><span class="p">)</span>
-<span class="linenos">12</span>
-<span class="linenos">13</span><span class="n">fits_file</span> <span class="o">=</span> <span class="n">file_path</span> <span class="o">/</span> <span class="s2">&quot;resources/ckp00_17000.fits&quot;</span>
-<span class="linenos">14</span><span class="k">with</span> <span class="n">fits</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fits_file</span><span class="p">)</span> <span class="k">as</span> <span class="n">hdulist</span><span class="p">:</span>
-<span class="linenos">15</span>    <span class="n">angstrom</span> <span class="o">=</span> <span class="n">hdulist</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;WAVELENGTH&quot;</span><span class="p">]</span>
-<span class="linenos">16</span>    <span class="n">kurucz</span> <span class="o">=</span> <span class="p">{</span>
-<span class="linenos">17</span>        <span class="s2">&quot;frequency&quot;</span><span class="p">:</span> <span class="mf">1e8</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">angstrom</span><span class="p">),</span>
-<span class="linenos">18</span>        <span class="s2">&quot;intensity&quot;</span><span class="p">:</span> <span class="mf">1e-8</span>
-<span class="linenos">19</span>        <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">hdulist</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;g40&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="n">angstrom</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-<span class="linenos">20</span>        <span class="o">/</span> <span class="p">(</span><span class="mi">4</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">),</span>
-<span class="linenos">21</span>    <span class="p">}</span>
-<span class="linenos">22</span>
-<span class="linenos">23</span><span class="n">transitions</span><span class="o">.</span><span class="n">cascade</span><span class="p">(</span>
-<span class="linenos">24</span>    <span class="n">kurucz</span><span class="p">,</span>
-<span class="linenos">25</span>    <span class="n">star</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-<span class="linenos">26</span>    <span class="n">stellar_model</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-<span class="linenos">27</span>    <span class="n">convolved</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-<span class="linenos">28</span>    <span class="n">multiprocessing</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-<span class="linenos">29</span><span class="p">)</span>
+<span class="linenos"> 9</span><span class="n">file_path</span> <span class="o">=</span> <span class="n">importlib_resources</span><span class="o">.</span><span class="n">files</span><span class="p">(</span><span class="s2">&quot;amespahdbpythonsuite&quot;</span><span class="p">)</span>
+<span class="linenos">10</span><span class="n">xml_file</span> <span class="o">=</span> <span class="n">file_path</span> <span class="o">/</span> <span class="s2">&quot;resources/pahdb-theoretical_cutdown.xml&quot;</span>
+<span class="linenos">11</span><span class="n">pahdb</span> <span class="o">=</span> <span class="n">AmesPAHdb</span><span class="p">(</span>
+<span class="linenos">12</span>    <span class="n">filename</span><span class="o">=</span><span class="n">xml_file</span><span class="p">,</span>
+<span class="linenos">13</span>    <span class="n">check</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="linenos">14</span>    <span class="n">cache</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="linenos">15</span><span class="p">)</span>
+<span class="linenos">16</span>
+<span class="linenos">17</span><span class="n">uid</span> <span class="o">=</span> <span class="mi">18</span>
+<span class="linenos">18</span>
+<span class="linenos">19</span><span class="n">transitions</span> <span class="o">=</span> <span class="n">pahdb</span><span class="o">.</span><span class="n">gettransitionsbyuid</span><span class="p">(</span><span class="n">uid</span><span class="p">)</span>
+<span class="linenos">20</span>
+<span class="linenos">21</span><span class="n">fits_file</span> <span class="o">=</span> <span class="n">file_path</span> <span class="o">/</span> <span class="s2">&quot;resources/ckp00_17000.fits&quot;</span>
+<span class="linenos">22</span><span class="k">with</span> <span class="n">fits</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fits_file</span><span class="p">)</span> <span class="k">as</span> <span class="n">hdulist</span><span class="p">:</span>
+<span class="linenos">23</span>    <span class="n">angstrom</span> <span class="o">=</span> <span class="n">hdulist</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;WAVELENGTH&quot;</span><span class="p">]</span>
+<span class="linenos">24</span>    <span class="n">kurucz</span> <span class="o">=</span> <span class="p">{</span>
+<span class="linenos">25</span>        <span class="s2">&quot;frequency&quot;</span><span class="p">:</span> <span class="mf">1e8</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">angstrom</span><span class="p">),</span>
+<span class="linenos">26</span>        <span class="s2">&quot;intensity&quot;</span><span class="p">:</span> <span class="mf">1e-8</span>
+<span class="linenos">27</span>        <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">hdulist</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;g40&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="n">angstrom</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="linenos">28</span>        <span class="o">/</span> <span class="p">(</span><span class="mi">4</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">),</span>
+<span class="linenos">29</span>    <span class="p">}</span>
 <span class="linenos">30</span>
-<span class="linenos">31</span><span class="n">transitions</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="o">-</span><span class="mf">15.0</span><span class="p">)</span>
-<span class="linenos">32</span>
-<span class="linenos">33</span><span class="n">spectrum</span> <span class="o">=</span> <span class="n">transitions</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">fwhm</span><span class="o">=</span><span class="mf">15.0</span><span class="p">,</span> <span class="n">lorentzian</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">multiprocessing</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="linenos">34</span>
-<span class="linenos">35</span><span class="n">spectrum</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="linenos">31</span><span class="n">transitions</span><span class="o">.</span><span class="n">cascade</span><span class="p">(</span>
+<span class="linenos">32</span>    <span class="n">kurucz</span><span class="p">,</span>
+<span class="linenos">33</span>    <span class="n">star</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="linenos">34</span>    <span class="n">stellar_model</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="linenos">35</span>    <span class="n">convolved</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="linenos">36</span>    <span class="n">multiprocessing</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="linenos">37</span><span class="p">)</span>
+<span class="linenos">38</span>
+<span class="linenos">39</span><span class="n">transitions</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="o">-</span><span class="mf">15.0</span><span class="p">)</span>
+<span class="linenos">40</span>
+<span class="linenos">41</span><span class="n">spectrum</span> <span class="o">=</span> <span class="n">transitions</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">fwhm</span><span class="o">=</span><span class="mf">15.0</span><span class="p">,</span> <span class="n">lorentzian</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">multiprocessing</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="linenos">42</span>
+<span class="linenos">43</span><span class="n">spectrum</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div></div>
@@ -190,33 +199,34 @@ of 15 cm<sup>-1</sup>.</p>
 <p>line 23: Display the resulting spectrum.</p>
 <p>line 25: Cleanup.</p>
 <p>line 27: Restore suppressing under/overflow reporting.</p>
-</div><div aria-labelledby="tab-1-UHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-1-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><p>lines 1-7: The cutdown version of the database XML-file included with
+</div><div aria-labelledby="tab-1-UHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-1-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><p>lines 1-6: Importing the necessary modules.</p>
+<p>lines 9-15: The cutdown version of the database XML-file included with
 the suite is loaded.</p>
-<p>line 9: Selecting UID 18 for coronene.</p>
-<p>line 11: Retrieving the fundamental vibrational transitions for coronene.</p>
-<p>line 13-21: Use astropy to load the Kurucz model from FITS file and
+<p>line 17: Selecting UID 18 for coronene.</p>
+<p>line 19: Retrieving the fundamental vibrational transitions for coronene.</p>
+<p>line 21-29: Use astropy to load the Kurucz model from FITS file and
 convert to expected units.</p>
-<p>lines 32-30: A Cascade emission model is applied that takes the Kurucz
+<p>lines 31-37: A Cascade emission model is applied that takes the Kurucz
 model as input and convolves it with the entire spectrum.</p>
-<p>line 32: The fundamental vibrational transitions are
+<p>line 39: The fundamental vibrational transitions are
 redshifted 15 cm<sup>-1</sup>.</p>
-<p>line 34: The fundamental vibrational transitions are convolved
+<p>line 41: The fundamental vibrational transitions are convolved
 with Lorentzian profiles having a full-width-at-half-maximum
 of 15 cm<sup>-1</sup>.</p>
-<p>line 36: Display the resulting spectrum.</p>
+<p>line 43: Display the resulting spectrum.</p>
 </div></div>
 </div></blockquote>
 <p>Below the generated output.</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-SURM" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-2-SURM" name="SURM" role="tab" tabindex="0">IDL</button><button aria-controls="panel-2-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-2-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-2-SURM" class="sphinx-tabs-panel group-tab" id="panel-2-SURM" name="SURM" role="tabpanel" tabindex="0"><figure class="align-center" id="id1">
-<img alt="_images/12.png" src="_images/12.png" />
+<img alt="_images/14.png" src="_images/14.png" />
 <figcaption>
 <p><span class="caption-text">Result of using a stellar Kurucz model to compute the emission
 spectrum of coronene.</span><a class="headerlink" href="#id1" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 </div><div aria-labelledby="tab-2-UHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-2-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><figure class="align-center" id="id2">
-<img alt="_images/13.png" src="_images/13.png" />
+<img alt="_images/15.png" src="_images/15.png" />
 <figcaption>
 <p><span class="caption-text">Result of using a stellar Kurucz model to compute the emission
 spectrum of coronene.</span><a class="headerlink" href="#id2" title="Link to this image">¶</a></p>
@@ -229,7 +239,7 @@ spectrum of coronene.</span><a class="headerlink" href="#id2" title="Link to thi
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="sec_02-fit_a_spectrum.html" class="btn btn-neutral float-left" title="Fit a spectrum" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="sec_02-mcfit_a_spectrum.html" class="btn btn-neutral float-left" title="Monte Carlo fit a spectrum" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Monte Carlo fit a spectrum &mdash; PAHdb cookbook  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/tabs.css?v=a5c4661c" />
+
+  
+    <link rel="shortcut icon" href="_static/touch-icon-310x310.png"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="_static/tabs.js?v=3030b3cb"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Stellar Kurucz Model" href="sec_02-stellar_kurucz_model.html" />
+    <link rel="prev" title="Fit a spectrum" href="sec_02-fit_a_spectrum.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            PAHdb cookbook
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="sec_01.html">API Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sec_01-getting_started.html">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sec_01-accessing_data.html">Accessing data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sec_01-working_with_geometry.html">Working with geometry data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sec_01-working_with_lab.html">Working with laboratory data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sec_01-working_with_transitions.html">Working with transition data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sec_01-using_emission_models.html">Using emission models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sec_01-creating_spectra.html">Creating spectra</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sec_01-working_with_spectra.html">Working with spectra</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sec_01-working_with_obs.html">Working with observational data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sec_01-spectroscopic_fitting.html">Spectroscopic fitting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sec_01-working_with_fitted_data.html">Working with fitted data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sec_01-working_outside_the_classes.html">Working outside the classes</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="sec_02.html">Recipes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="sec_02-fit_a_spectrum.html">Fit a spectrum</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Monte Carlo fit a spectrum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sec_02-stellar_kurucz_model.html">Stellar Kurucz Model</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">PAHdb cookbook</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="sec_02.html">Recipes</a></li>
+      <li class="breadcrumb-item active">Monte Carlo fit a spectrum</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
+        <a href="sec_02-fit_a_spectrum.html" class="btn btn-neutral float-left" title="Fit a spectrum" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="sec_02-stellar_kurucz_model.html" class="btn btn-neutral float-right" title="Stellar Kurucz Model" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="monte-carlo-fit-a-spectrum">
+<h1>Monte Carlo fit a spectrum<a class="headerlink" href="#monte-carlo-fit-a-spectrum" title="Link to this heading">¶</a></h1>
+<p>A complete example of fitting an astronomical spectrum using a Monte Carlo
+approach is shown below. It is an adaption of ‘mc_fit_a_spectrum’ found in the
+examples-directory of the software tools, and is followed by a detailed,
+line-by-line, explanation of the code.</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-SURM" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-0-SURM" name="SURM" role="tab" tabindex="0">IDL</button><button aria-controls="panel-0-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-0-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-0-SURM" class="sphinx-tabs-panel code-tab group-tab" id="panel-0-SURM" name="SURM" role="tabpanel" tabindex="0"><div class="highlight-idl notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>observation<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">OBJ_NEW</span>(<span class="s1">&#39;AmesPAHdbIDLSuite_Observation&#39;</span>,<span class="w"> </span>myFile,<span class="w"> </span>$
+<span class="linenos"> 2</span><span class="w">                      </span>Units<span class="o">=</span>AmesPAHdbIDLSuite_CREATE_OBSERVATION_UNITS_S())
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span>observation<span class="o">-&gt;</span>AbscissaUnitsTo,<span class="mi">1</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span>pahdb<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">OBJ_NEW</span>(<span class="s1">&#39;AmesPAHdbIDLSuite&#39;</span>)
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>transitions<span class="w"> </span><span class="o">=</span><span class="w"> </span>pahdb<span class="o">-&gt;</span>getTransitionsByUID(<span class="w"> </span>$
+<span class="linenos"> 9</span><span class="w">              </span>pahdb<span class="o">-&gt;</span>Search(<span class="s2">&quot;magnesium=0 oxygen=0 iron=0 silicium=0 chx=0 ch2=0 c&gt;20 h&gt;0&quot;</span>))
+<span class="linenos">10</span>
+<span class="linenos">11</span>transitions<span class="o">-&gt;</span>Cascade,8D<span class="o">*</span><span class="mf">1.602D-12</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span>transitions<span class="o">-&gt;</span><span class="nb">Shift</span>,<span class="o">-</span>15D
+<span class="linenos">14</span>
+<span class="linenos">15</span>spectrum<span class="w"> </span><span class="o">=</span><span class="w"> </span>transitions<span class="o">-&gt;</span>Convolve(Grid<span class="o">=</span>observation<span class="o">-&gt;</span>getGrid(),<span class="w"> </span>$
+<span class="linenos">16</span><span class="w">                                 </span>FWHM<span class="o">=</span>15D,<span class="w"> </span>$
+<span class="linenos">17</span><span class="w">                                 </span><span class="o">/</span>Gaussian)
+<span class="linenos">18</span>
+<span class="linenos">19</span><span class="nb">OBJ_DESTROY</span>,[transitions]
+<span class="linenos">20</span>
+<span class="linenos">21</span>mcfit<span class="w"> </span><span class="o">=</span><span class="w"> </span>spectrum<span class="o">-&gt;</span>MCFit(observation,<span class="w"> </span><span class="mi">1024</span>)
+<span class="linenos">22</span>
+<span class="linenos">23</span><span class="nb">OBJ_DESTROY</span>,[spectrum]
+<span class="linenos">24</span>
+<span class="linenos">25</span>mcfit<span class="o">-&gt;</span><span class="nb">Plot</span>,<span class="o">/</span>Wavelength
+<span class="linenos">26</span>
+<span class="linenos">27</span>mcfit<span class="o">-&gt;</span><span class="nb">Plot</span>,<span class="o">/</span>Wavelength,<span class="o">/</span><span class="nb">Size</span>
+<span class="linenos">28</span>
+<span class="linenos">29</span>mcfit<span class="o">-&gt;</span><span class="nb">Plot</span>,<span class="o">/</span>Wavelength,<span class="o">/</span>Charge
+<span class="linenos">30</span>
+<span class="linenos">31</span>mcfit<span class="o">-&gt;</span><span class="nb">Plot</span>,<span class="o">/</span>Wavelength,<span class="o">/</span>Composition
+<span class="linenos">32</span>
+<span class="linenos">33</span>mcfit<span class="o">-&gt;</span><span class="nb">Plot</span>,<span class="o">/</span>DistributionSize,NBins<span class="o">=</span><span class="il">10L</span>,<span class="nb">Min</span><span class="o">=</span><span class="mi">20</span>,<span class="nb">Max</span><span class="o">=</span><span class="mi">200</span>
+<span class="linenos">34</span>
+<span class="linenos">35</span><span class="nb">OBJ_DESTROY</span>,[mcfit,<span class="w"> </span>pahdb,<span class="w"> </span>observation]
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-0-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">importlib_resources</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="kn">from</span> <span class="nn">amespahdbpythonsuite</span> <span class="kn">import</span> <span class="n">observation</span>
+<span class="linenos"> 4</span><span class="kn">from</span> <span class="nn">amespahdbpythonsuite.amespahdb</span> <span class="kn">import</span> <span class="n">AmesPAHdb</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="n">file_path</span> <span class="o">=</span> <span class="n">importlib_resources</span><span class="o">.</span><span class="n">files</span><span class="p">(</span><span class="s2">&quot;amespahdbpythonsuite&quot;</span><span class="p">)</span>
+<span class="linenos"> 7</span><span class="n">data_file</span> <span class="o">=</span> <span class="n">file_path</span> <span class="o">/</span> <span class="s2">&quot;resources/galaxy_spec.ipac&quot;</span>
+<span class="linenos"> 8</span><span class="n">obs</span> <span class="o">=</span> <span class="n">observation</span><span class="o">.</span><span class="n">Observation</span><span class="p">(</span><span class="n">data_file</span><span class="p">)</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span><span class="n">obs</span><span class="o">.</span><span class="n">abscissaunitsto</span><span class="p">(</span><span class="s2">&quot;1/cm&quot;</span><span class="p">)</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span><span class="n">xml_file</span> <span class="o">=</span> <span class="n">file_path</span> <span class="o">/</span> <span class="s2">&quot;resources/pahdb-theoretical_cutdown.xml&quot;</span>
+<span class="linenos">13</span><span class="n">pahdb</span> <span class="o">=</span> <span class="n">AmesPAHdb</span><span class="p">(</span>
+<span class="linenos">14</span>    <span class="n">filename</span><span class="o">=</span><span class="n">xml_file</span><span class="p">,</span>
+<span class="linenos">15</span>    <span class="n">check</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="linenos">16</span>    <span class="n">cache</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="linenos">17</span><span class="p">)</span>
+<span class="linenos">18</span>
+<span class="linenos">19</span><span class="n">uids</span> <span class="o">=</span> <span class="n">pahdb</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;c&gt;0&quot;</span><span class="p">)</span>
+<span class="linenos">20</span><span class="n">transitions</span> <span class="o">=</span> <span class="n">pahdb</span><span class="o">.</span><span class="n">gettransitionsbyuid</span><span class="p">(</span><span class="n">uids</span><span class="p">)</span>
+<span class="linenos">21</span>
+<span class="linenos">22</span><span class="n">transitions</span><span class="o">.</span><span class="n">cascade</span><span class="p">(</span><span class="mf">8.0</span> <span class="o">*</span> <span class="mf">1.603e-12</span><span class="p">,</span> <span class="n">multiprocessing</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="linenos">23</span>
+<span class="linenos">24</span><span class="n">transitions</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="o">-</span><span class="mf">15.0</span><span class="p">)</span>
+<span class="linenos">25</span>
+<span class="linenos">26</span><span class="n">spectrum</span> <span class="o">=</span> <span class="n">transitions</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span>
+<span class="linenos">27</span>    <span class="n">grid</span><span class="o">=</span><span class="n">obs</span><span class="o">.</span><span class="n">getgrid</span><span class="p">(),</span> <span class="n">fwhm</span><span class="o">=</span><span class="mf">15.0</span><span class="p">,</span> <span class="n">gaussian</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">multiprocessing</span><span class="o">=</span><span class="kc">False</span>
+<span class="linenos">28</span><span class="p">)</span>
+<span class="linenos">29</span>
+<span class="linenos">30</span><span class="n">mcfit</span> <span class="o">=</span> <span class="n">spectrum</span><span class="o">.</span><span class="n">mcfit</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="n">samples</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span> <span class="n">multiprocessing</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="linenos">31</span>
+<span class="linenos">32</span><span class="n">mcfit</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">wavelength</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">residual</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="linenos">33</span><span class="n">mcfit</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">wavelength</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="linenos">34</span><span class="n">mcfit</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">wavelength</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">charge</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="linenos">35</span><span class="n">mcfit</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">wavelength</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">composition</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></div>
+<p>A line-by-line explanation of the code follows.</p>
+<blockquote>
+<div><div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-SURM" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-1-SURM" name="SURM" role="tab" tabindex="0">IDL</button><button aria-controls="panel-1-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-1-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-1-SURM" class="sphinx-tabs-panel group-tab" id="panel-1-SURM" name="SURM" role="tabpanel" tabindex="0"><p>lines 1-2: An observation is read from ‘myFile’ and the
+‘AmesPAHdbIDLSuite_CREATE_OBSERVATION_UNITS_S’-helper function
+is called to associate units.</p>
+<p>line 4: Observation abscissa units are converted to
+wavenumber.</p>
+<p>line 6: The default NASA Ames PAH IR Spectroscopic Database
+XML-file is loaded.</p>
+<p>lines 8-9: The fundamental vibrational transitions from a subset
+of PAHs are retrieved.</p>
+<p>line 10: A full Cascade emission model at 8 eV is applied.</p>
+<p>line 13: The fundamental vibrational transitions are
+redshifted 15 cm<sup>-1</sup>.</p>
+<p>lines 19-20: The fundamental vibrational transitions are convolved
+with Gaussian profiles having a full-width-at-half-maximum
+of 15 cm<sup>-1</sup> onto the observational grid.</p>
+<p>line 19: Cleanup of ‘transitions’.</p>
+<p>line 21: The observation is fitted with the PAH emission
+spectra using a Monte Carlo approach.</p>
+<p>line 23: Cleanup of ‘spectrum’.</p>
+<p>line 25-33: Display several aspects of the fit.</p>
+<p>line 35: Cleanup.</p>
+</div><div aria-labelledby="tab-1-UHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-1-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><p>lines 1-4: Importing the necessary modules.</p>
+<p>lines 6-8: A spectrum included with the suite is loaded.</p>
+<p>line 10: Observation abscissa units are converted to wavenumber.</p>
+<p>line 13: The cutdown version of the database XML-file included with the
+suite is loaded.</p>
+<p>line 15-16: The fundamental vibrational transitions are retrieved.</p>
+<p>line 22: A full Cascade emission model at 8 eV is applied.</p>
+<p>line 24: The fundamental vibrational transitions are redshifted 15 cm<sup>-1</sup>.</p>
+<p>lines 22-24: The fundamental vibrational transitions are convolved with
+Gaussian profiles having a full-width-at-half-maximum of 15 cm<sup>-1</sup> onto the observational grid.</p>
+<p>line 30 The observation is fitted with the PAH emission spectra using a
+Monte Carlo approach.</p>
+<p>line 32-35: Display several aspects of the fit.</p>
+</div></div>
+</div></blockquote>
+<p>Below some examples of the generated output.</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-SURM" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-2-SURM" name="SURM" role="tab" tabindex="0">IDL</button><button aria-controls="panel-2-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-2-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-2-SURM" class="sphinx-tabs-panel group-tab" id="panel-2-SURM" name="SURM" role="tabpanel" tabindex="0"><figure class="align-center" id="id1">
+<img alt="_images/12.png" src="_images/12.png" />
+<figcaption>
+<p><span class="caption-text">Top: Result of a PAHdb-fit to the 5-15 micron spectrum of
+NGC 7023. Bottom: Residual of the fit.</span><a class="headerlink" href="#id1" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+</div><div aria-labelledby="tab-2-UHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-2-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><figure class="align-center" id="id2">
+<img alt="_images/13.png" src="_images/13.png" />
+<figcaption>
+<p><span class="caption-text">Result of a PAHdb-fit to the 5-15 micron spectrum of NGC 7023.</span><a class="headerlink" href="#id2" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+</div></div>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-3-SURM" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-3-SURM" name="SURM" role="tab" tabindex="0">IDL</button><button aria-controls="panel-3-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-3-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-3-SURM" class="sphinx-tabs-panel group-tab" id="panel-3-SURM" name="SURM" role="tabpanel" tabindex="0"><figure class="align-center" id="id3">
+<img alt="_images/22.png" src="_images/22.png" />
+<figcaption>
+<p><span class="caption-text">Result of a PAHdb-fit to the 5-15 micron spectrum of NGC 7023
+showing the contribution from large, medium, and small PAHs.</span><a class="headerlink" href="#id3" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+</div><div aria-labelledby="tab-3-UHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-3-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><figure class="align-center" id="id4">
+<img alt="_images/23.png" src="_images/23.png" />
+<figcaption>
+<p><span class="caption-text">Result of a PAHdb-fit to the 5-15 micron spectrum of NGC 7023
+showing the contribution from large and small PAHs.</span><a class="headerlink" href="#id4" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+</div></div>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-4-SURM" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-4-SURM" name="SURM" role="tab" tabindex="0">IDL</button><button aria-controls="panel-4-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-4-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-4-SURM" class="sphinx-tabs-panel group-tab" id="panel-4-SURM" name="SURM" role="tabpanel" tabindex="0"><figure class="align-center" id="id5">
+<img alt="_images/32.png" src="_images/32.png" />
+<figcaption>
+<p><span class="caption-text">Result of a PAHdb-fit to the 5-15 micron spectrum of NGC
+7023 showing the contribution from PAH anions, neutrals and
+cation.</span><a class="headerlink" href="#id5" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+</div><div aria-labelledby="tab-4-UHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-4-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><figure class="align-center" id="id6">
+<img alt="_images/33.png" src="_images/33.png" />
+<figcaption>
+<p><span class="caption-text">Result of a PAHdb-fit to the 5-15 micron spectrum of NGC
+7023 showing the contribution from PAH anions, neutrals and
+cation.</span><a class="headerlink" href="#id6" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+</div></div>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-5-SURM" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-5-SURM" name="SURM" role="tab" tabindex="0">IDL</button><button aria-controls="panel-5-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-5-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-5-SURM" class="sphinx-tabs-panel group-tab" id="panel-5-SURM" name="SURM" role="tabpanel" tabindex="0"><figure class="align-center" id="id7">
+<img alt="_images/42.png" src="_images/42.png" />
+<figcaption>
+<p><span class="caption-text">Result of a PAHdb-fit to the 5-15 micron spectrum of NGC
+7023 showing the contribution from ‘pure’ and nitrogen
+containing PAHs (PANHs).</span><a class="headerlink" href="#id7" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+</div><div aria-labelledby="tab-5-UHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-5-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><figure class="align-center" id="id8">
+<img alt="_images/43.png" src="_images/43.png" />
+<figcaption>
+<p><span class="caption-text">Result of a PAHdb-fit to the 5-15 micron spectrum of NGC
+7023 showing the contribution from ‘pure’ and nitrogen
+containing PAHs (PANHs).</span><a class="headerlink" href="#id8" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+</div></div>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-6-SURM" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-6-SURM" name="SURM" role="tab" tabindex="0">IDL</button></div><div aria-labelledby="tab-6-SURM" class="sphinx-tabs-panel group-tab" id="panel-6-SURM" name="SURM" role="tabpanel" tabindex="0"><figure class="align-center" id="id9">
+<img alt="_images/52.png" src="_images/52.png" />
+<figcaption>
+<p><span class="caption-text">Result of a PAHdb-fit to the 5-15 micron spectrum of NGC
+7023 showing the derived PAH size distribution.</span><a class="headerlink" href="#id9" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+</div></div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="sec_02-fit_a_spectrum.html" class="btn btn-neutral float-left" title="Fit a spectrum" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="sec_02-stellar_kurucz_model.html" class="btn btn-neutral float-right" title="Stellar Kurucz Model" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019, Dr. Christiaan Boersma and Dr. Matthew J. Shannon.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

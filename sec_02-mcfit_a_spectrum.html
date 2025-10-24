@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="./">
 <head>
@@ -5,21 +7,19 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Monte Carlo fit a spectrum &mdash; PAHdb cookbook  documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/tabs.css?v=a5c4661c" />
 
   
     <link rel="shortcut icon" href="_static/touch-icon-310x310.png"/>
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script src="_static/documentation_options.js?v=5929fcd5"></script>
-        <script src="_static/doctools.js?v=9a2dae69"></script>
-        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-        <script src="_static/tabs.js?v=3030b3cb"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9a2dae69"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script src="_static/tabs.js?v=3030b3cb"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -98,7 +98,7 @@
            <div itemprop="articleBody">
              
   <section id="monte-carlo-fit-a-spectrum">
-<h1>Monte Carlo fit a spectrum<a class="headerlink" href="#monte-carlo-fit-a-spectrum" title="Link to this heading">¶</a></h1>
+<h1>Monte Carlo fit a spectrum<a class="headerlink" href="#monte-carlo-fit-a-spectrum" title="Link to this heading"></a></h1>
 <p>A complete example of fitting an astronomical spectrum using a Monte Carlo
 approach is shown below. It is an adaption of ‘mc_fit_a_spectrum’ found in the
 examples-directory of the software tools, and is followed by a detailed,
@@ -141,10 +141,10 @@ line-by-line, explanation of the code.</p>
 <span class="linenos">35</span><span class="nb">OBJ_DESTROY</span>,[mcfit,<span class="w"> </span>pahdb,<span class="w"> </span>observation]
 </pre></div>
 </div>
-</div><div aria-labelledby="tab-0-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-0-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">importlib_resources</span>
+</div><div aria-labelledby="tab-0-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-0-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span><span class="w"> </span><span class="nn">importlib_resources</span>
 <span class="linenos"> 2</span>
-<span class="linenos"> 3</span><span class="kn">from</span> <span class="nn">amespahdbpythonsuite</span> <span class="kn">import</span> <span class="n">observation</span>
-<span class="linenos"> 4</span><span class="kn">from</span> <span class="nn">amespahdbpythonsuite.amespahdb</span> <span class="kn">import</span> <span class="n">AmesPAHdb</span>
+<span class="linenos"> 3</span><span class="kn">from</span><span class="w"> </span><span class="nn">amespahdbpythonsuite</span><span class="w"> </span><span class="kn">import</span> <span class="n">observation</span>
+<span class="linenos"> 4</span><span class="kn">from</span><span class="w"> </span><span class="nn">amespahdbpythonsuite.amespahdb</span><span class="w"> </span><span class="kn">import</span> <span class="n">AmesPAHdb</span>
 <span class="linenos"> 5</span>
 <span class="linenos"> 6</span><span class="n">file_path</span> <span class="o">=</span> <span class="n">importlib_resources</span><span class="o">.</span><span class="n">files</span><span class="p">(</span><span class="s2">&quot;amespahdbpythonsuite&quot;</span><span class="p">)</span>
 <span class="linenos"> 7</span><span class="n">data_file</span> <span class="o">=</span> <span class="n">file_path</span> <span class="o">/</span> <span class="s2">&quot;resources/galaxy_spec.ipac&quot;</span>
@@ -224,13 +224,13 @@ Monte Carlo approach.</p>
 <img alt="_images/12.png" src="_images/12.png" />
 <figcaption>
 <p><span class="caption-text">Top: Result of a PAHdb-fit to the 5-15 micron spectrum of
-NGC 7023. Bottom: Residual of the fit.</span><a class="headerlink" href="#id1" title="Link to this image">¶</a></p>
+NGC 7023. Bottom: Residual of the fit.</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 </div><div aria-labelledby="tab-2-UHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-2-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><figure class="align-center" id="id2">
 <img alt="_images/13.png" src="_images/13.png" />
 <figcaption>
-<p><span class="caption-text">Result of a PAHdb-fit to the 5-15 micron spectrum of NGC 7023.</span><a class="headerlink" href="#id2" title="Link to this image">¶</a></p>
+<p><span class="caption-text">Result of a PAHdb-fit to the 5-15 micron spectrum of NGC 7023.</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 </div></div>
@@ -239,14 +239,14 @@ NGC 7023. Bottom: Residual of the fit.</span><a class="headerlink" href="#id1" t
 <img alt="_images/22.png" src="_images/22.png" />
 <figcaption>
 <p><span class="caption-text">Result of a PAHdb-fit to the 5-15 micron spectrum of NGC 7023
-showing the contribution from large, medium, and small PAHs.</span><a class="headerlink" href="#id3" title="Link to this image">¶</a></p>
+showing the contribution from large, medium, and small PAHs.</span><a class="headerlink" href="#id3" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 </div><div aria-labelledby="tab-3-UHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-3-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><figure class="align-center" id="id4">
 <img alt="_images/23.png" src="_images/23.png" />
 <figcaption>
 <p><span class="caption-text">Result of a PAHdb-fit to the 5-15 micron spectrum of NGC 7023
-showing the contribution from large and small PAHs.</span><a class="headerlink" href="#id4" title="Link to this image">¶</a></p>
+showing the contribution from large and small PAHs.</span><a class="headerlink" href="#id4" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 </div></div>
@@ -256,7 +256,7 @@ showing the contribution from large and small PAHs.</span><a class="headerlink" 
 <figcaption>
 <p><span class="caption-text">Result of a PAHdb-fit to the 5-15 micron spectrum of NGC
 7023 showing the contribution from PAH anions, neutrals and
-cation.</span><a class="headerlink" href="#id5" title="Link to this image">¶</a></p>
+cation.</span><a class="headerlink" href="#id5" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 </div><div aria-labelledby="tab-4-UHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-4-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><figure class="align-center" id="id6">
@@ -264,7 +264,7 @@ cation.</span><a class="headerlink" href="#id5" title="Link to this image">¶</a
 <figcaption>
 <p><span class="caption-text">Result of a PAHdb-fit to the 5-15 micron spectrum of NGC
 7023 showing the contribution from PAH anions, neutrals and
-cation.</span><a class="headerlink" href="#id6" title="Link to this image">¶</a></p>
+cation.</span><a class="headerlink" href="#id6" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 </div></div>
@@ -274,7 +274,7 @@ cation.</span><a class="headerlink" href="#id6" title="Link to this image">¶</a
 <figcaption>
 <p><span class="caption-text">Result of a PAHdb-fit to the 5-15 micron spectrum of NGC
 7023 showing the contribution from ‘pure’ and nitrogen
-containing PAHs (PANHs).</span><a class="headerlink" href="#id7" title="Link to this image">¶</a></p>
+containing PAHs (PANHs).</span><a class="headerlink" href="#id7" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 </div><div aria-labelledby="tab-5-UHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-5-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><figure class="align-center" id="id8">
@@ -282,7 +282,7 @@ containing PAHs (PANHs).</span><a class="headerlink" href="#id7" title="Link to 
 <figcaption>
 <p><span class="caption-text">Result of a PAHdb-fit to the 5-15 micron spectrum of NGC
 7023 showing the contribution from ‘pure’ and nitrogen
-containing PAHs (PANHs).</span><a class="headerlink" href="#id8" title="Link to this image">¶</a></p>
+containing PAHs (PANHs).</span><a class="headerlink" href="#id8" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 </div></div>
@@ -291,7 +291,7 @@ containing PAHs (PANHs).</span><a class="headerlink" href="#id8" title="Link to 
 <img alt="_images/52.png" src="_images/52.png" />
 <figcaption>
 <p><span class="caption-text">Result of a PAHdb-fit to the 5-15 micron spectrum of NGC
-7023 showing the derived PAH size distribution.</span><a class="headerlink" href="#id9" title="Link to this image">¶</a></p>
+7023 showing the derived PAH size distribution.</span><a class="headerlink" href="#id9" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 </div></div>
@@ -308,7 +308,7 @@ containing PAHs (PANHs).</span><a class="headerlink" href="#id8" title="Link to 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2019, Dr. Christiaan Boersma and Dr. Matthew J. Shannon.</p>
+    <p>&#169; Copyright 2019-2025, Dr. Christiaan Boersma, Dr. Matthew J. Shannon, and Dr. Alexandros Maragkoudakis.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

@@ -18,6 +18,7 @@ installed via
 
 * **Christiaan Boersma** - *Initial work* - [PAHdb](https://github.com/PAHdb)
 * **Matthew J. Shannon** - *Initial work* - [PAHdb](https://github.com/PAHdb)
+* **Alexandros Maragoudakis** - *Additional work* - [PAHdb](https://github.com/PAHdb)
 
 ## Acknowledgments
 
